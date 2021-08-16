@@ -486,8 +486,6 @@ MonoBehaviour:
   power: 100
   powerDrain: 1
   torchLight: {fileID: 1463626493}
-  torchBar: {fileID: 0}
-  gameObj: {fileID: 0}
 --- !u!1 &90922858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1001,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705249077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.033, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.115, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1463626492}
@@ -1246,8 +1244,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463626491}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.1541, y: -0.0896, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.64102644, w: 0.7675188}
+  m_LocalPosition: {x: 0.11180005, y: -0.049899995, z: 0}
   m_LocalScale: {x: 3.3333333, y: 3.3333333, z: 1}
   m_Children: []
   m_Father: {fileID: 705249078}
