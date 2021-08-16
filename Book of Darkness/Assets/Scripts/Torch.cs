@@ -5,12 +5,27 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Torch : MonoBehaviour
 {
+    public Transform arm;
+    public CharacterController2D cc2D;
+
+    void Start()
+    {
+        
+    }
+
     void Update()
     {   
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (mPos - (Vector2)transform.position).normalized;
+        Vector2 dir = (mPos - (Vector2)arm.position).normalized;
 
-        transform.up = dir;
+        if (cc2D.m_FacingRight)
+        {
+            arm.right = dir;
+        }
+        else
+        {
+            arm.right = -dir;
+        }
 
 
         // Rotate angle restriction code block
