@@ -115,16 +115,36 @@ public class CharacterController2D : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+
+			/*
+			*
+			*
+			* This block of code controls player's facing direction using A and D
+			// // If the input is moving the player right and the player is facing left...
+			// if (move > 0 && !m_FacingRight)
+			// {
+			// 	Flip();
+			// }
+			// // Otherwise if the input is moving the player left and the player is facing right...
+			// else if (move < 0 && m_FacingRight)
+			// {
+			// 	Flip();
+			// }
+			*
+			*
+			*/
+
+
+			// This block of code controls the character's direction by cursor position
+			Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(m_Rigidbody2D.position);
+			if(dir.x > 0 && !m_FacingRight)
+			{
+				Flip();
+			} else if(dir.x < 0 && m_FacingRight)
 			{
 				Flip();
 			}
-			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
-			{
-				Flip();
-			}
+
 		}
 		// Jumping
 		if (m_Grounded && jump)
