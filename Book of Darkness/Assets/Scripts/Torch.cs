@@ -7,10 +7,18 @@ public class Torch : MonoBehaviour
 {
     public Transform arm;
     public CharacterController2D cc2D;
+    public float power = 100.0f;
+    private float maxPower = 100.0f;
+    private float minPower = 0.0f;
+    public float powerDrain = 1.0f;
+    private bool usable = true;
+    public Light2D torchLight;
+    public TorchUI torchBar;
+    public GameObject gameObj;
 
     void Start()
     {
-        
+        torchBar.SetBatteryCeiling(maxPower, minPower);
     }
 
     void Update()
@@ -27,6 +35,30 @@ public class Torch : MonoBehaviour
             arm.right = -dir;
         }
 
+        if(Input.GetButtonDown(InputAxes.Torch) && usable)
+        {
+            torchLight.enabled = !torchLight.enabled;
+            gameObj.SetActive(torchLight.enabled);
+        }
+
+        if(torchLight.enabled)
+        {
+            power -= Time.deltaTime * powerDrain;
+            torchBar.SetBattery(power);
+        }
+
+        if(power > maxPower)
+        {
+            power = maxPower;
+        }
+
+        if(power < minPower)
+        {
+            power = minPower;
+            torchLight.enabled = false;
+            gameObj.SetActive(false);
+            usable = false;
+        }
 
         // Rotate angle restriction code block
         //
