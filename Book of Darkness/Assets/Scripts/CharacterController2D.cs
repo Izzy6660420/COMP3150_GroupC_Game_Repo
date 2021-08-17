@@ -31,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
-
+	public TorchUI torchUI;
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -60,6 +60,8 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}
 		}
+
+		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + 0.4f, 0.0f));
 	}
 
 

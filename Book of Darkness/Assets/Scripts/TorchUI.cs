@@ -9,6 +9,7 @@ public class TorchUI : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public Camera uiCam;
     
     public void SetBatteryCeiling(float maxPow, float minPow)
     {
@@ -23,5 +24,10 @@ public class TorchUI : MonoBehaviour
         slider.value = power/100.0f;
         fill.color = gradient.Evaluate(slider.normalizedValue);
 
+    }
+
+    public void setLocation(Vector3 location)
+    {
+        transform.position = location;
     }
 }
