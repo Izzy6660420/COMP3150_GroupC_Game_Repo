@@ -20,6 +20,9 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	private SpriteRenderer m_Renderer;
+	private SpriteRenderer[] m_playerSubSprites;
+	private Torch m_playerTorch;
 
 	[Header("Events")]
 	[Space]
@@ -31,11 +34,16 @@ public class CharacterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
+	private bool canHide = false;
+	private bool hiding = false;
 	public TorchUI torchUI;
 	private float torchBarOffset = 0.4f;
 
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		m_Renderer = GetComponent<SpriteRenderer>();
+		m_playerSubSprites = GetComponentsInChildren<SpriteRenderer>();
+		m_playerTorch = GetComponent<Torch>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -67,6 +75,30 @@ public class CharacterController2D : MonoBehaviour
 	public void Update()
     {
 		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
+
+		if (canHide && Input.GetKey(KeyCode.E))
+        {
+			HidePlayer(true);
+		}
+		else
+        {
+			HidePlayer(false);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.gameObject.CompareTag("Furniture"))
+        {
+			canHide = true;
+		}
+	}
+	void OnTriggerExit2D(Collider2D col)
+	{
+		if (col.gameObject.CompareTag("Furniture"))
+		{
+			canHide = false;
+		}
 	}
 
 	public void Move(float move, bool crouch, bool jump) {
@@ -120,24 +152,6 @@ public class CharacterController2D : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-
-			/*
-			
-			// This block of code controls player's facing direction using A and D
-			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
-			{
-				Flip();
-			}
-			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
-			{
-				Flip();
-			}
-			
-			*/
-
-
 			// This block of code controls the character's direction by cursor position
 			Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(m_Rigidbody2D.position);
 			if(dir.x > 0 && !m_FacingRight)
@@ -156,7 +170,6 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
@@ -166,5 +179,20 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void HidePlayer(bool hideBool)
+    {
+		Physics2D.IgnoreLayerCollision(3, 7, hideBool);
+		m_Renderer.enabled = !hideBool;
+		m_playerTorch.torchLight.enabled = !hideBool;
+		torchUI.enabled = !hideBool;
+
+		for (int i = 0; i < m_playerSubSprites.Length; i++)
+		{
+			m_playerSubSprites[i].enabled = !hideBool;
+		}
+
+		hiding = hideBool;
 	}
 }
