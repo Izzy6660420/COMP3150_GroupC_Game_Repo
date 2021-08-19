@@ -37,7 +37,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool canHide = false;
 	private bool hiding = false;
 	public TorchUI torchUI;
-	private float torchBarOffset = 0.4f;
+	private float torchBarOffset = 1.5f;
 
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
