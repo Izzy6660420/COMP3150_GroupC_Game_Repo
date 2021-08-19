@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: House Wall Tileset
+  m_Name: HW_InsideTLR
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9d1ef00884261fd4a997bd55feb5a32c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 201cb324d035e4b4c833dd19ef56d974, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
