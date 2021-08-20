@@ -1763,7 +1763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec9dfa2921b61f429a6be55f1bf6e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 8000
+  m_JumpForce: 500
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -1774,13 +1774,14 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 90922859}
   m_CrouchDisableCollider: {fileID: 0}
   m_FacingRight: 1
+  torchUI: {fileID: 466566108}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
-  torchUI: {fileID: 466566108}
+  hiding: 0
 --- !u!50 &88522912
 Rigidbody2D:
   serializedVersion: 4
@@ -1861,7 +1862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88522910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.255, y: 2.16, z: 0}
+  m_LocalPosition: {x: -6.727, y: 1.875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 90922859}
@@ -1969,7 +1970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90922858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.028, y: 0.275, z: 0}
+  m_LocalPosition: {x: -0.028, y: 1.168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 88522914}
@@ -2903,7 +2904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077270592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.035, y: -0.3192, z: 0}
+  m_LocalPosition: {x: -0.035, y: -1.334, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 88522914}

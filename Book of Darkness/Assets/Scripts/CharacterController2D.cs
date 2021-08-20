@@ -23,6 +23,8 @@ public class CharacterController2D : MonoBehaviour
 	private SpriteRenderer m_Renderer;
 	private SpriteRenderer[] m_playerSubSprites;
 	private Torch m_playerTorch;
+	public TorchUI torchUI;
+	private float torchBarOffset = 1.5f;
 
 	[Header("Events")]
 	[Space]
@@ -35,9 +37,7 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 	private bool canHide = false;
-	private bool hiding = false;
-	public TorchUI torchUI;
-	private float torchBarOffset = 1.5f;
+	public bool hiding = false;
 
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -76,11 +76,12 @@ public class CharacterController2D : MonoBehaviour
     {
 		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
 
-		if (canHide && Input.GetKey(KeyCode.E))
+		// Visual hiding function
+		if (canHide && Input.GetKey(KeyCode.E) && !hiding)
         {
 			HidePlayer(true);
 		}
-		else
+		else if (hiding && Input.GetKey(KeyCode.E))
         {
 			HidePlayer(false);
 		}
@@ -185,14 +186,13 @@ public class CharacterController2D : MonoBehaviour
     {
 		Physics2D.IgnoreLayerCollision(3, 7, hideBool);
 		m_Renderer.enabled = !hideBool;
-		m_playerTorch.torchLight.enabled = !hideBool;
-		torchUI.enabled = !hideBool;
+		m_playerTorch.SetActive(!hideBool);
+		torchUI.enabled = hideBool;
 
 		for (int i = 0; i < m_playerSubSprites.Length; i++)
 		{
 			m_playerSubSprites[i].enabled = !hideBool;
 		}
-
 		hiding = hideBool;
 	}
 }

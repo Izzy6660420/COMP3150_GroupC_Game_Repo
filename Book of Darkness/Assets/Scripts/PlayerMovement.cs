@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
         hMove = Input.GetAxisRaw(InputAxes.Horizontal) * runSpeed;
         if (Input.GetButtonDown(InputAxes.Jump))
         {
+            Debug.Log("JUMP PRESSED");
             jump = true;
         }
 
@@ -31,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        controller.Move(hMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
+        if (!controller.hiding)
+        {
+            controller.Move(hMove * Time.fixedDeltaTime, crouch, jump);
+            jump = false;
+        }
     }
 }

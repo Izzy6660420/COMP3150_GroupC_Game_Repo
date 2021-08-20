@@ -35,28 +35,26 @@ public class Torch : MonoBehaviour
             arm.right = -dir;
         }
 
-        if(Input.GetButtonDown(InputAxes.Torch) && usable)
+        if (Input.GetButtonDown(InputAxes.Torch) && usable)
         {
-            torchLight.enabled = !torchLight.enabled;
-            gameObj.SetActive(torchLight.enabled);
+            SetActive(!torchLight.enabled);
         }
 
-        if(torchLight.enabled)
+        if (torchLight.enabled)
         {
             power -= Time.deltaTime * powerDrain;
             torchBar.SetBattery(power);
         }
 
-        if(power > maxPower)
+        if (power > maxPower)
         {
             power = maxPower;
         }
 
-        if(power < minPower)
+        if (power < minPower)
         {
             power = minPower;
-            torchLight.enabled = false;
-            gameObj.SetActive(false);
+            SetActive(false);
             usable = false;
         }
 
@@ -70,5 +68,14 @@ public class Torch : MonoBehaviour
         // targetRotation.eulerAngles = nAngles;
         // Debug.Log("nAngles: " + nAngles);
         // transform.rotation = targetRotation;
+    }
+
+    public void SetActive(bool b)
+    {
+        if (!cc2D.hiding)
+        {
+            torchLight.enabled = b;
+            gameObj.SetActive(b);
+        }
     }
 }
