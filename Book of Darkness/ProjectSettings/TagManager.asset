@@ -42,3 +42,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Outside Background
+    uniqueID: 2064428369
+    locked: 0
+  - name: Background Walls
+    uniqueID: 3067815529
+    locked: 0
+  - name: Background Furniture
+    uniqueID: 883028083
+    locked: 0
+  - name: Playable Area
+    uniqueID: 1237982947
+    locked: 0
+  - name: Foreground Furniture
+    uniqueID: 1422875003
+    locked: 0
+  - name: House Structure
+    uniqueID: 2194186167
+    locked: 0
+  - name: GUI
+    uniqueID: 1866853095
+    locked: 0
