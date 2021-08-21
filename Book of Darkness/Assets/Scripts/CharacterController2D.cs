@@ -77,15 +77,11 @@ public class CharacterController2D : MonoBehaviour
 		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
 
 		// Visual hiding function
-		if (canHide && Input.GetKey(KeyCode.E) && !hiding)
-        {
-			HidePlayer(true);
+		if (Input.GetKeyDown(KeyCode.E) && canHide)
+		{
+			HidePlayer(!hiding);
 		}
-		else if (hiding && Input.GetKey(KeyCode.E))
-        {
-			HidePlayer(false);
-		}
-	}
+    }
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
