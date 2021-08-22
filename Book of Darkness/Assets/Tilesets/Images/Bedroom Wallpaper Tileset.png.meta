@@ -77,6 +77,18 @@ TextureImporter:
   - first:
       213: 4342624863636923735
     second: Bedroom Wallpaper Tileset_24
+  - first:
+      213: -969765367652467276
+    second: Bedroom Wallpaper Tileset_25
+  - first:
+      213: 4934005405337422401
+    second: Bedroom Wallpaper Tileset_26
+  - first:
+      213: 6861742982396520823
+    second: Bedroom Wallpaper Tileset_27
+  - first:
+      213: 1347840713906177388
+    second: Bedroom Wallpaper Tileset_28
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -316,8 +328,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 168
+        y: 72
         width: 24
         height: 24
       alignment: 0
@@ -337,8 +349,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_8
       rect:
         serializedVersion: 2
-        x: 24
-        y: 48
+        x: 192
+        y: 72
         width: 24
         height: 24
       alignment: 0
@@ -358,7 +370,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_9
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 48
         width: 24
         height: 24
@@ -379,7 +391,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_10
       rect:
         serializedVersion: 2
-        x: 72
+        x: 24
         y: 48
         width: 24
         height: 24
@@ -400,7 +412,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_11
       rect:
         serializedVersion: 2
-        x: 96
+        x: 48
         y: 48
         width: 24
         height: 24
@@ -421,7 +433,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_12
       rect:
         serializedVersion: 2
-        x: 120
+        x: 72
         y: 48
         width: 24
         height: 24
@@ -442,7 +454,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_13
       rect:
         serializedVersion: 2
-        x: 144
+        x: 96
         y: 48
         width: 24
         height: 24
@@ -463,8 +475,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 24
+        x: 120
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -484,8 +496,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_15
       rect:
         serializedVersion: 2
-        x: 24
-        y: 24
+        x: 144
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -505,8 +517,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_16
       rect:
         serializedVersion: 2
-        x: 48
-        y: 24
+        x: 168
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -526,8 +538,8 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_17
       rect:
         serializedVersion: 2
-        x: 72
-        y: 24
+        x: 192
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -547,7 +559,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_18
       rect:
         serializedVersion: 2
-        x: 96
+        x: 0
         y: 24
         width: 24
         height: 24
@@ -568,7 +580,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_19
       rect:
         serializedVersion: 2
-        x: 120
+        x: 24
         y: 24
         width: 24
         height: 24
@@ -589,7 +601,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_20
       rect:
         serializedVersion: 2
-        x: 144
+        x: 48
         y: 24
         width: 24
         height: 24
@@ -611,7 +623,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -632,7 +644,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -653,7 +665,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -674,7 +686,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -686,6 +698,90 @@ TextureImporter:
       bones: []
       spriteID: 755abd52e4a144c30800000000000000
       internalID: 4342624863636923735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_25
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd39914983ba82f0800000000000000
+      internalID: -969765367652467276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a8ef056cb197440800000000000000
+      internalID: 4934005405337422401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_27
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77926cd23eec93f50800000000000000
+      internalID: 6861742982396520823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_28
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65cf26fcfd74b210800000000000000
+      internalID: 1347840713906177388
       vertices: []
       indices: 
       edges: []
