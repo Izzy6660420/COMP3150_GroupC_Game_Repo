@@ -5,37 +5,53 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    // bool jump = false;
+    bool hiding = false;
     public float runSpeed = 40f;
-
-    float hMove = 0f;
-    bool jump = false;
-    bool crouch = false;
-
     void Update()
     {
-        hMove = Input.GetAxisRaw(InputAxes.Horizontal) * runSpeed;
-        if (Input.GetButtonDown(InputAxes.Jump))
-        {
-            Debug.Log("JUMP PRESSED");
-            jump = true;
-        }
+        // if (Input.GetButtonDown(InputAxes.Jump))
+        // {
+        //     Debug.Log("JUMP PRESSED");
+        //     jump = true;
+        // }
+        // else
+        // {
+        //     jump = false;
+        // }
 
-        if (Input.GetButtonDown(InputAxes.Crouch))
+        if (controller.canHideInf())
         {
-            crouch = true;
+            if (Input.GetButtonDown(InputAxes.Interact))
+            {
+                if (!hiding)
+                {
+                    hiding = true;
+                    controller.currentState.ChangeState(controller.HidingState);
+                }
+                else
+                {
+                    hiding = false;
+                    controller.currentState.ChangeState(controller.ExposedState);
+                }
+                controller.currentState.DoState(hiding);
+            }
         }
-        else if (Input.GetButtonUp(InputAxes.Crouch))
+        
+
+        if(!hiding)
         {
-            crouch = false;
+            if(Input.GetButtonDown(InputAxes.Torch) && controller.m_playerTorch.usableBool()) 
+            {
+                controller.m_playerTorch.SetActive(!controller.m_playerTorch.torchLight.enabled);
+            }
+
+            controller.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));
         }
     }
 
     void FixedUpdate()
     {
-        if (!controller.hiding)
-        {
-            controller.Move(hMove * Time.fixedDeltaTime, crouch, jump);
-            jump = false;
-        }
+
     }
 }

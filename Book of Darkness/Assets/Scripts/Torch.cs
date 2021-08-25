@@ -22,7 +22,7 @@ public class Torch : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (mPos - (Vector2)arm.position).normalized;
 
@@ -33,11 +33,6 @@ public class Torch : MonoBehaviour
         else
         {
             arm.right = -dir;
-        }
-
-        if (Input.GetButtonDown(InputAxes.Torch) && usable)
-        {
-            SetActive(!torchLight.enabled);
         }
 
         if (torchLight.enabled)
@@ -58,6 +53,11 @@ public class Torch : MonoBehaviour
             usable = false;
         }
 
+        // if (Input.GetButtonDown(InputAxes.Torch) && usable)
+        // {
+        //     SetActive(!torchLight.enabled);
+        // }
+
         // Rotate angle restriction code block
         //
         // Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -72,10 +72,12 @@ public class Torch : MonoBehaviour
 
     public void SetActive(bool b)
     {
-        if (!cc2D.hiding)
-        {
-            torchLight.enabled = b;
-            gameObj.SetActive(b);
-        }
+        torchLight.enabled = b;
+        gameObj.SetActive(b);
+    }
+
+    public bool usableBool()
+    {
+        return usable;
     }
 }
