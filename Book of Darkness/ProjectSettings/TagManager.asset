@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Furniture
   - Enemies
+  - Torch
   layers:
   - Default
   - TransparentFX

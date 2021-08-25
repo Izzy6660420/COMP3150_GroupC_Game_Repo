@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     Path path;
     int currentWaypoint = 0;
     bool reachedEnd = false;
+    bool stunned = false;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -51,24 +52,43 @@ public class EnemyAI : MonoBehaviour
             reachedEnd = false;
         }
 
-        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = dir * speed * Time.deltaTime;
+        if (!stunned)
+        {
+            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = dir * speed * Time.deltaTime;
 
-        rb.AddForce(force);
+            rb.AddForce(force);
+            if (force.x >= 0.01f)
+            {
+                enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else if (force.x <= -0.01f)
+            {
+                enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (dist < nextDist)
         {
             currentWaypoint++;
         }
+    }
 
-        if (force.x >= 0.01f)
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Torch"))
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            stunned = true;
+            Debug.Log("STUNNED");
         }
-        else if (force.x <= -0.01f)
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Torch"))
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            Debug.Log("NOT STUNNED");
+            stunned = false;
         }
     }
 
