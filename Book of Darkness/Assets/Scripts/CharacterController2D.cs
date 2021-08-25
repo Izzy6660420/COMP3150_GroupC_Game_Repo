@@ -137,7 +137,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void HidePlayer(bool hideBool)
     {
-		Physics2D.IgnoreLayerCollision(3, 7,  !hideBool);
+		Physics2D.IgnoreLayerCollision(3, 7,  hideBool);
 		m_Renderer.enabled = hideBool;
 		m_playerTorch.SetActive(!hideBool);
 		torchUI.enabled = !hideBool;
