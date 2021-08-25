@@ -78,6 +78,7 @@ public class CharacterController2D : MonoBehaviour
 	public void Update()
     {
 		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
+		torchUI.SetCamera(DimensionController.Instance.MainCam());
     }
 
 	void OnTriggerEnter2D(Collider2D col)

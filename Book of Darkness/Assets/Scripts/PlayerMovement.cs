@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
                 controller.m_playerTorch.SetActive(!controller.m_playerTorch.torchLight.enabled);
             }
 
+            if(Input.GetButtonDown(InputAxes.DimensionSwitch))
+            {
+                
+                DimensionController.Instance.CameraSwitch();
+            }
+
             controller.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));
         }
     }

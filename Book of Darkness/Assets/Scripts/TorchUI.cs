@@ -9,7 +9,7 @@ public class TorchUI : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public Camera uiCam;
+    private Camera uiCam;
     
     public void SetBatteryCeiling(float maxPow, float minPow)
     {
@@ -29,5 +29,10 @@ public class TorchUI : MonoBehaviour
     public void setLocation(Vector3 location)
     {
         transform.position = location;
+    }
+
+    public void SetCamera(Camera cam)
+    {
+        uiCam = cam;
     }
 }
