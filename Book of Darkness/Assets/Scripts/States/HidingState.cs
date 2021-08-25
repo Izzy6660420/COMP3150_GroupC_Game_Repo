@@ -14,6 +14,7 @@ public class HidingState : PlayerState
     public void DoState(bool hide)
     {
         controller.HidePlayer(true);
+        controller.m_Rigidbody2D.velocity = new Vector2(0, 0);
     }
 
     public void ChangeState(PlayerState state)
