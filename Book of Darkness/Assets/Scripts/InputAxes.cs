@@ -5,5 +5,6 @@ public class InputAxes
     public const string Jump = "Jump";
     public const string Crouch = "Crouch";
     public const string Torch = "Torch";
+    public const string DimensionSwitch = "DimensionSwitch";
     public const string Interact = "Interact";
 }
