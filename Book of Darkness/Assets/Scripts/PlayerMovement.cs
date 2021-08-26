@@ -47,6 +47,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 
                 DimensionController.Instance.CameraSwitch();
+
+                if(DimensionController.Instance.dimensionInf().Equals("darkness")) 
+                {
+                    Physics2D.IgnoreLayerCollision(3, 9, false);
+                    Physics2D.IgnoreLayerCollision(3, 8, true);
+                } 
+                else if(DimensionController.Instance.dimensionInf().Equals("nightmare"))
+                {
+                    Physics2D.IgnoreLayerCollision(3, 9, true);
+                    Physics2D.IgnoreLayerCollision(3, 8, false);
+                }
             }
 
             controller.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));

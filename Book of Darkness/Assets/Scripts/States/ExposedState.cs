@@ -24,5 +24,8 @@ public class ExposedState : PlayerState
         controller.currentState = state;
     }
 
-
+    public string NameToString()
+    {
+        return "Exposed State";
+    }
 }

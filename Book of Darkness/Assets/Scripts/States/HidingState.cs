@@ -23,4 +23,9 @@ public class HidingState : PlayerState
         controller.currentState = state;
     }
 
+    public string NameToString()
+    {
+        return "Hidng State";
+    }
+
 }
