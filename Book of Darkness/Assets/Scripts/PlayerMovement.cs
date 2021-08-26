@@ -20,24 +20,21 @@ public class PlayerMovement : MonoBehaviour
         //    jump = false;
         //}
 
-        if (controller.canHideInf())
+
+        if (Input.GetButtonDown(InputAxes.Interact))
         {
-            if (Input.GetButtonDown(InputAxes.Interact))
+            if (!hiding && controller.canHideInf())
             {
-                if (!hiding)
-                {
-                    hiding = true;
-                    controller.currentState.ChangeState(controller.HidingState);
-                }
-                else
-                {
-                    hiding = false;
-                    controller.currentState.ChangeState(controller.ExposedState);
-                }
-                controller.currentState.DoState(hiding);
+                hiding = true;
+                controller.currentState.ChangeState(controller.HidingState);
             }
+            else
+            {
+                hiding = false;
+                controller.currentState.ChangeState(controller.ExposedState);
+            }
+            controller.currentState.DoState(hiding);
         }
-        
 
         if(!hiding)
         {

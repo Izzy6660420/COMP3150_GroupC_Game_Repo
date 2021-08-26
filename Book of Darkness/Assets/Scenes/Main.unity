@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 90922859}
   m_Rigidbody2D: {fileID: 0}
   m_FacingRight: 1
-  m_playerTorch: {fileID: 0}
+  playerTorch: {fileID: 0}
   torchUI: {fileID: 466566108}
   panicUI: {fileID: 1635985115}
   OnLandEvent:
@@ -5059,7 +5059,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -5078,7 +5078,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
