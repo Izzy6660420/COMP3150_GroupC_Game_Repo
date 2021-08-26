@@ -5,10 +5,15 @@ using UnityEngine;
 public class DimensionController : MonoBehaviour
 {
     static private DimensionController instance;
-    static private Camera MainCamera;
+    static private Camera mainCamera;
     public Camera nightmare;
     public Camera darkness;
 
+    public PanicUI panicBar;
+    private float panic = 0.0f;
+    private float maxPanic = 10.0f;
+    private float minPanic = 0.0f;
+    public float panicGain = 1.0f;
 
     public static DimensionController Instance
     {
@@ -24,6 +29,16 @@ public class DimensionController : MonoBehaviour
         {
             instance = this;
         }
+        panicBar.SetPanicCeiling(maxPanic, minPanic);
+    }
+
+    void Update()
+    {
+        if (darkness.enabled)
+        {
+            panic += Time.deltaTime * panicGain;
+            panicBar.SetPanic(panic);
+        }
     }
 
     public void CameraSwitch()
@@ -32,18 +47,18 @@ public class DimensionController : MonoBehaviour
         {
             nightmare.enabled = false;
             darkness.enabled = true;
-            MainCamera = darkness;
+            mainCamera = darkness;
         }
         else
         {
             nightmare.enabled = true;
             darkness.enabled = false;
-            MainCamera = nightmare;
+            mainCamera = nightmare;
         }
     }
 
     public Camera MainCam()
     {
-        return MainCamera;
+        return mainCamera;
     }
 }

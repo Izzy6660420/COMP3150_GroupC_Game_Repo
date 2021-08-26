@@ -20,9 +20,12 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private SpriteRenderer m_Renderer;
 	private SpriteRenderer[] m_playerSubSprites;
+
 	public Torch m_playerTorch;
 	public TorchUI torchUI;
 	private float torchBarOffset = 1.5f;
+	public PanicUI panicUI;
+	private float panicBarOffset = 2.0f;
 
 	[Header("Events")]
 	[Space]
@@ -79,6 +82,8 @@ public class CharacterController2D : MonoBehaviour
     {
 		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
 		torchUI.SetCamera(DimensionController.Instance.MainCam());
+		panicUI.setLocation(new Vector3(transform.position.x, transform.position.y + panicBarOffset, 0.0f));
+		panicUI.SetCamera(DimensionController.Instance.MainCam());
     }
 
 	void OnTriggerEnter2D(Collider2D col)

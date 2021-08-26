@@ -80,14 +80,12 @@ public class EnemyAI : MonoBehaviour
         if (col.gameObject.CompareTag("Torch"))
         {
             stunned = true;
-            Debug.Log("STUNNED");
         }
     }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Torch"))
         {
-            Debug.Log("NOT STUNNED");
             stunned = false;
         }
     }
