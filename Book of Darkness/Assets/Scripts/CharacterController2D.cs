@@ -21,9 +21,10 @@ public class CharacterController2D : MonoBehaviour
 	private SpriteRenderer m_Renderer;
 	private SpriteRenderer[] m_playerSubSprites;
 
-	public Torch m_playerTorch;
+	public Torch playerTorch;
 	public TorchUI torchUI;
 	private float torchBarOffset = 1.5f;
+
 	public PanicUI panicUI;
 	private float panicBarOffset = 2.0f;
 
@@ -39,12 +40,12 @@ public class CharacterController2D : MonoBehaviour
 	public PlayerState currentState;
 	public PlayerState ExposedState,HidingState;
 
-	private void Awake() 
+	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_Renderer = GetComponent<SpriteRenderer>();
 		m_playerSubSprites = GetComponentsInChildren<SpriteRenderer>();
-		m_playerTorch = GetComponent<Torch>();
+		playerTorch = GetComponent<Torch>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -144,7 +145,7 @@ public class CharacterController2D : MonoBehaviour
     {
 		Physics2D.IgnoreLayerCollision(3, 7,  hideBool);
 		m_Renderer.enabled = hideBool;
-		m_playerTorch.SetActive(!hideBool);
+		playerTorch.SetActive(!hideBool);
 		torchUI.enabled = !hideBool;
 
 		for (int i = 0; i < m_playerSubSprites.Length; i++)

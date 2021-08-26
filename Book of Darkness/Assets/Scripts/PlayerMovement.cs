@@ -10,15 +10,15 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     void Update()
     {
-        // if (Input.GetButtonDown(InputAxes.Jump))
-        // {
-        //     Debug.Log("JUMP PRESSED");
-        //     jump = true;
-        // }
-        // else
-        // {
-        //     jump = false;
-        // }
+        //if (Input.GetButtonDown(InputAxes.Jump))
+        //{
+        //    Debug.Log("JUMP PRESSED");
+        //    jump = true;
+        //}
+        //else
+        //{
+        //    jump = false;
+        //}
 
         if (controller.canHideInf())
         {
@@ -41,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(!hiding)
         {
-            if(Input.GetButtonDown(InputAxes.Torch) && controller.m_playerTorch.usableBool()) 
+            if(Input.GetButtonDown(InputAxes.Torch) && controller.playerTorch.usableBool()) 
             {
-                controller.m_playerTorch.SetActive(!controller.m_playerTorch.torchLight.enabled);
+                controller.playerTorch.SetActive(!controller.playerTorch.torchLight.enabled);
             }
 
             if(Input.GetButtonDown(InputAxes.DimensionSwitch))
@@ -54,10 +54,5 @@ public class PlayerMovement : MonoBehaviour
 
             controller.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));
         }
-    }
-
-    void FixedUpdate()
-    {
-
     }
 }
