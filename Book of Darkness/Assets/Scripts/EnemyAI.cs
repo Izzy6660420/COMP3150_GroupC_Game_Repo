@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
 
     Path path;
     int currentWaypoint = 0;
-    bool reachedEnd = false;
+    //bool reachedEnd = false;
     bool stunned = false;
 
     Seeker seeker;
@@ -44,12 +44,12 @@ public class EnemyAI : MonoBehaviour
         }
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            reachedEnd = true;
+            //reachedEnd = true;
             return;
         }
         else
         {
-            reachedEnd = false;
+            //reachedEnd = false;
         }
 
         if (!stunned)
