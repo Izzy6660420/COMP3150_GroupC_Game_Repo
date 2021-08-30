@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5389276782418971362}
   - component: {fileID: 5389276782418971361}
   - component: {fileID: 5389276782418971360}
-  - component: {fileID: 5389276782418971167}
   - component: {fileID: 5389276782418971363}
+  - component: {fileID: 5389276782418971167}
   m_Layer: 3
   m_Name: Torch
   m_TagString: KeyItem
@@ -111,18 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.23602608, y: 0.10893512}
   m_EdgeRadius: 0
---- !u!114 &5389276782418971167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5389276782418971166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4282702c1b874984aa634161db9551ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5389276782418971363
 Rigidbody2D:
   serializedVersion: 4
@@ -144,3 +132,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5389276782418971167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389276782418971166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4282702c1b874984aa634161db9551ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
