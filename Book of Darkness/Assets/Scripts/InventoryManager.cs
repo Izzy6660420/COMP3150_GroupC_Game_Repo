@@ -5,15 +5,16 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     List<GameObject> objects = new List<GameObject>();
-
-    void Start()
-    {
-        
-    }
+    private int batteries = 0;
 
     void Update()
     {
-        
+        Debug.Log(batteries);
+    }
+
+    public void AddBattery()
+    {
+        batteries++;
     }
 
     public void AddItem(GameObject obj)
