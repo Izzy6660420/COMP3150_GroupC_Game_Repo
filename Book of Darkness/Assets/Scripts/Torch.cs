@@ -13,6 +13,7 @@ public class Torch : MonoBehaviour
     public float powerDrain = 1.0f;
     private bool usable = true;
     public Light2D torchLight;
+    public Light2D torchLightBG;
     public PolygonCollider2D polyCol;
     public TorchUI torchBar;
     public GameObject gameObj;
@@ -74,6 +75,7 @@ public class Torch : MonoBehaviour
     public void SetActive(bool b)
     {
         torchLight.enabled = b;
+        torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
     }
