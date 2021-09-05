@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform target;
+    Transform target;
 
     public float speed = 2000f;
     public float nextDist = 3f;
@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        target = FindObjectOfType<CharacterController2D>().transform;
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
