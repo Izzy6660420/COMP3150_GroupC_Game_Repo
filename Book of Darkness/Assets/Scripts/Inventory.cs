@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class Inventory : MonoBehaviour
 
     public List<Item> items = new List<Item>();
     public int space = 5;
-    int batteries = 0;
+    public int batteries = 0;
+    public Text batteryText;
 
     public bool Add(Item item)
     {
@@ -48,5 +50,6 @@ public class Inventory : MonoBehaviour
     public void AddBattery()
     {
         batteries++;
+        batteryText.text = "Batteries: " + batteries.ToString();
     }
 }
