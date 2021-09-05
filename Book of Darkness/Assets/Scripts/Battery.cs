@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : MonoBehaviour
+public class Battery : Interactable
 {
-    private InventoryManager playerInventory;
+    Inventory inventory;
 
     void Start()
     {
-        playerInventory = FindObjectOfType<InventoryManager>();
+        inventory = Inventory.instance;
     }
 
-    void OnTriggerEnter2D(Collider2D col) // Player collect
+    public override void Interact()
     {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            playerInventory.AddBattery();
-            Destroy(gameObject);
-        }
+        Inventory.instance.AddBattery();
+        Destroy(gameObject);
     }
 }
