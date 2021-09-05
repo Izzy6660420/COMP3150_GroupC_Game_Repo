@@ -1,26 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    // bool jump = false;
     bool hiding = false;
     public float runSpeed = 40f;
     void Update()
     {
-        //if (Input.GetButtonDown(InputAxes.Jump))
-        //{
-        //    Debug.Log("JUMP PRESSED");
-        //    jump = true;
-        //}
-        //else
-        //{
-        //    jump = false;
-        //}
-
-
         if (Input.GetButtonDown(InputAxes.Interact))
         {
             if (!hiding && controller.canHideInf())
@@ -38,8 +25,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(!hiding)
         {
+            // Torch Control
             if(Input.GetButtonDown(InputAxes.Torch) && controller.playerTorch.usableBool()) 
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
                 controller.playerTorch.SetActive(!controller.playerTorch.torchLight.enabled);
             }
 

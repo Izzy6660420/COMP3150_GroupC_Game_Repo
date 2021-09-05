@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public GameObject inventoryUI;
     public Transform itemsParent;
     Inventory inventory;
     InventorySlot[] slots;
@@ -16,7 +17,9 @@ public class InventoryUI : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetButtonDown(InputAxes.Inventory)){
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+        }
     }
 
     void UpdateUI()
