@@ -7,15 +7,18 @@ public class Torch : MonoBehaviour
 {
     public Transform arm;
     public CharacterController2D cc2D;
+    public Light2D torchLight;
+    public Light2D torchLightBG;
+    public PolygonCollider2D polyCol;
+    public TorchUI torchBar;
+    public GameObject gameObj;
+
     public float power = 20.0f;
     private float maxPower = 20.0f;
     private float minPower = 0.0f;
     public float powerDrain = 1.0f;
+
     private bool usable = true;
-    public Light2D torchLight;
-    public PolygonCollider2D polyCol;
-    public TorchUI torchBar;
-    public GameObject gameObj;
 
     void Start()
     {
@@ -74,6 +77,7 @@ public class Torch : MonoBehaviour
     public void SetActive(bool b)
     {
         torchLight.enabled = b;
+        torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
     }
