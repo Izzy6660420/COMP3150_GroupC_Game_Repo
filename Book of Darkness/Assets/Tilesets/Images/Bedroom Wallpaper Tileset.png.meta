@@ -89,6 +89,24 @@ TextureImporter:
   - first:
       213: 1347840713906177388
     second: Bedroom Wallpaper Tileset_28
+  - first:
+      213: -8454308269272750776
+    second: Bedroom Wallpaper Tileset_29
+  - first:
+      213: -7749390137604463209
+    second: Bedroom Wallpaper Tileset_30
+  - first:
+      213: 2628080853157956965
+    second: Bedroom Wallpaper Tileset_31
+  - first:
+      213: -4738406282425675042
+    second: Bedroom Wallpaper Tileset_32
+  - first:
+      213: -4676426553322910162
+    second: Bedroom Wallpaper Tileset_33
+  - first:
+      213: 5106143530935549248
+    second: Bedroom Wallpaper Tileset_34
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -748,7 +766,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_27
       rect:
         serializedVersion: 2
-        x: 168
+        x: 0
         y: 0
         width: 24
         height: 24
@@ -769,7 +787,7 @@ TextureImporter:
       name: Bedroom Wallpaper Tileset_28
       rect:
         serializedVersion: 2
-        x: 192
+        x: 24
         y: 0
         width: 24
         height: 24
@@ -782,6 +800,132 @@ TextureImporter:
       bones: []
       spriteID: c65cf26fcfd74b210800000000000000
       internalID: 1347840713906177388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_29
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845a9540c634caa80800000000000000
+      internalID: -8454308269272750776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_30
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795ab265ab2a47490800000000000000
+      internalID: -7749390137604463209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_31
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d4c7d9c91d87420800000000000000
+      internalID: 2628080853157956965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_32
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2d98e579ccd3eb0800000000000000
+      internalID: -4738406282425675042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_33
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2ecbf693def91fb0800000000000000
+      internalID: -4676426553322910162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wallpaper Tileset_34
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d7295ec7aacd640800000000000000
+      internalID: 5106143530935549248
       vertices: []
       indices: 
       edges: []
