@@ -68,7 +68,8 @@ public class CharacterController2D : MonoBehaviour
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
-			if (colliders[i].gameObject != gameObject)
+			GameObject go = colliders[i].gameObject;
+			if (go != gameObject & go.CompareTag("Ground"))
 			{
 				m_Grounded = true;
 				if (!wasGrounded)
