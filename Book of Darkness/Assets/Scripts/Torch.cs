@@ -76,6 +76,9 @@ public class Torch : MonoBehaviour
 
     public void SetActive(bool b)
     {
+        if (!Inventory.instance.hasItem("Torch"))
+            return;
+
         torchLight.enabled = b;
         torchLightBG.enabled = b;
         polyCol.enabled = b;
