@@ -9,7 +9,7 @@ public class DimensionController : MonoBehaviour
     public Camera nightmare;
     public Camera darkness;
 
-    public PanicUI panicBar;
+    private PanicUI panicBar;
     private float panic = 0.0f;
     private float maxPanic = 10.0f;
     private float minPanic = 0.0f;
@@ -27,18 +27,22 @@ public class DimensionController : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
-        dimensionStr = nightmareStr;
-    }
-    void OnEnable()
-    {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
+    }
+
+    void Start()
+    {
+        dimensionStr = nightmareStr;
+        panicBar = PanicUI.instance;
         panicBar.SetPanicCeiling(maxPanic, minPanic);
     }
+
+
 
     void Update()
     {

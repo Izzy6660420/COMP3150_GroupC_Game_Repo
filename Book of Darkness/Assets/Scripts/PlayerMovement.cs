@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     bool hiding = false;
     public float runSpeed = 40f;
+
     void Update()
     {
         if (Input.GetButtonDown(InputAxes.Interact))

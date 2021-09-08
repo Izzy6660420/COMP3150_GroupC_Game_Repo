@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+	public static CharacterController2D instance;
+
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
@@ -22,10 +24,10 @@ public class CharacterController2D : MonoBehaviour
 	private SpriteRenderer[] m_playerSubSprites;
 
 	public Torch playerTorch;
-	public TorchUI torchUI;
+	private TorchUI torchUI;
 	private float torchBarOffset = 1.5f;
 
-	public PanicUI panicUI;
+	private PanicUI panicUI;
 	private float panicBarOffset = 2.0f;
 
 	[Header("Events")]
@@ -39,9 +41,16 @@ public class CharacterController2D : MonoBehaviour
 	private bool canHide = false;
 	public PlayerState currentState;
 	public PlayerState ExposedState,HidingState;
+	public bool canEnter = true;
 
 	private void Awake()
 	{
+		if (instance != null)
+		{
+			Debug.Log("More than one instance of CharacterController2D detected!");
+		}
+		instance = this;
+
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_Renderer = GetComponent<SpriteRenderer>();
 		m_playerSubSprites = GetComponentsInChildren<SpriteRenderer>();
@@ -56,6 +65,8 @@ public class CharacterController2D : MonoBehaviour
 		ExposedState = new ExposedState(this);
 		HidingState = new HidingState(this);
 		currentState = ExposedState;
+		torchUI = TorchUI.instance;
+		panicUI = PanicUI.instance;
 	}
 
 	private void FixedUpdate() 
