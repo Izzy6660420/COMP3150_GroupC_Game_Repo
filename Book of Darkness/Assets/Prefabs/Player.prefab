@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 1268084536011138680}
   - component: {fileID: 1268084536011138626}
   - component: {fileID: 1268084536011138625}
-  - component: {fileID: 1268084536011138624}
   - component: {fileID: 1268084536011138639}
   m_Layer: 3
   m_Name: Player
@@ -336,22 +335,6 @@ MonoBehaviour:
   gameObj: {fileID: 1268084536787848220}
   power: 10
   powerDrain: 1
---- !u!114 &1268084536011138624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268084536011138681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4426337bb6effd428d582f7da66665f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  space: 5
-  batteries: 0
-  batteryText: {fileID: 0}
 --- !u!114 &1268084536011138639
 MonoBehaviour:
   m_ObjectHideFlags: 0
