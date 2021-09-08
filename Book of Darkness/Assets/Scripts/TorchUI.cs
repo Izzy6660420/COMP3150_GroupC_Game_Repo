@@ -4,7 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TorchUI : MonoBehaviour
-{   
+{
+    public static TorchUI instance;
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of TorchUI detected!");
+        }
+        instance = this;
+    }
+
     public Slider slider;
     public Gradient gradient;
     public Image fill;

@@ -118,7 +118,7 @@ MonoBehaviour:
   - {x: 0.073574066, y: -0.2718072, z: 0}
   m_ShapePathHash: 60185125
   m_Mesh: {fileID: 0}
-  m_InstanceId: 19766
+  m_InstanceId: 116512
 --- !u!1 &1268084536011138681
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 1268084536011138680}
   - component: {fileID: 1268084536011138626}
   - component: {fileID: 1268084536011138625}
-  - component: {fileID: 1268084536011138624}
   - component: {fileID: 1268084536011138639}
   m_Layer: 3
   m_Name: Player
@@ -295,14 +294,13 @@ MonoBehaviour:
     m_Bits: 55
   m_GroundCheck: {fileID: 1268084537174212262}
   m_CeilingCheck: {fileID: 1268084536012552588}
-  m_Rigidbody2D: {fileID: 0}
+  m_Rigidbody2D: {fileID: 1268084536011138631}
   m_FacingRight: 1
-  playerTorch: {fileID: 0}
-  torchUI: {fileID: 0}
-  panicUI: {fileID: 0}
+  playerTorch: {fileID: 1268084536011138625}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
+  canEnter: 1
 --- !u!114 &1268084536011138626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,25 +329,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arm: {fileID: 1268084535394032081}
   cc2D: {fileID: 1268084536011138680}
-  power: 10
-  powerDrain: 1
   torchLight: {fileID: 1268084536787848218}
   torchLightBG: {fileID: 1268084536963770709}
   polyCol: {fileID: 1268084536787848217}
-  torchBar: {fileID: 0}
-  gameObj: {fileID: 0}
---- !u!114 &1268084536011138624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268084536011138681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4426337bb6effd428d582f7da66665f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  gameObj: {fileID: 1268084536787848220}
+  power: 10
+  powerDrain: 1
 --- !u!114 &1268084536011138639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +458,7 @@ MonoBehaviour:
   - {x: -0.49913788, y: -1.081838, z: 0}
   m_ShapePathHash: 1841632181
   m_Mesh: {fileID: 0}
-  m_InstanceId: 19682
+  m_InstanceId: 116536
 --- !u!1 &1268084536012552589
 GameObject:
   m_ObjectHideFlags: 0

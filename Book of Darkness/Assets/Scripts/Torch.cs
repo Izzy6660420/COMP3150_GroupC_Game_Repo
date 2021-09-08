@@ -10,7 +10,6 @@ public class Torch : MonoBehaviour
     public Light2D torchLight;
     public Light2D torchLightBG;
     public PolygonCollider2D polyCol;
-    public TorchUI torchBar;
     public GameObject gameObj;
 
     public float power = 20.0f;
@@ -18,10 +17,12 @@ public class Torch : MonoBehaviour
     private float minPower = 0.0f;
     public float powerDrain = 1.0f;
 
+    private TorchUI torchBar;
     private bool usable = true;
 
     void Start()
     {
+        torchBar = TorchUI.instance;
         torchBar.SetBatteryCeiling(maxPower, minPower);
     }
 
@@ -56,28 +57,13 @@ public class Torch : MonoBehaviour
             SetActive(false);
             usable = false;
         }
-
-        // if (Input.GetButtonDown(InputAxes.Torch) && usable)
-        // {
-        //     SetActive(!torchLight.enabled);
-        // }
-
-        // Rotate angle restriction code block
-        //
-        // Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // mPos.z = transform.position.z;
-        // Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, mPos - transform.position);
-        // Vector3 nAngles = targetRotation.eulerAngles;
-        // nAngles.z = nAngles.z < 180? Mathf.Clamp(nAngles.z, 60, 120) : Mathf.Clamp(nAngles.z, 240, 300);
-        // targetRotation.eulerAngles = nAngles;
-        // Debug.Log("nAngles: " + nAngles);
-        // transform.rotation = targetRotation;
     }
 
     public void SetActive(bool b)
     {
-        if (!Inventory.instance.hasItem("Torch"))
-            return;
+        // Item check for torch in inventory
+        //if (!Inventory.instance.hasItem("Torch"))
+        //    return;
 
         torchLight.enabled = b;
         torchLightBG.enabled = b;

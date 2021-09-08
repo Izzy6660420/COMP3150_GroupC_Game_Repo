@@ -4,7 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PanicUI : MonoBehaviour
-{   
+{
+    public static PanicUI instance;
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of PanicUI detected!");
+        }
+        instance = this;
+    }
+
     public Slider slider;
     public Gradient gradient;
     public Image fill;
