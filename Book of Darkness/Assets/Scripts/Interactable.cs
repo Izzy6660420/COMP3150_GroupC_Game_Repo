@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 
 public class Interactable : MonoBehaviour
 {
@@ -25,12 +24,5 @@ public class Interactable : MonoBehaviour
         {
             hasInteracted = false;
         }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.yellow;
-        Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), radius);
-
     }
 }
