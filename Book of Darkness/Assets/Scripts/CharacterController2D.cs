@@ -101,7 +101,7 @@ public class CharacterController2D : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.gameObject.CompareTag("Furniture"))
+		if (col.gameObject.CompareTag("Hideable"))
         {
 			canHide = true;
 		}
@@ -109,7 +109,7 @@ public class CharacterController2D : MonoBehaviour
 	
 	void OnTriggerExit2D(Collider2D col)
 	{
-		if (col.gameObject.CompareTag("Furniture"))
+		if (col.gameObject.CompareTag("Hideable"))
 		{
 			canHide = false;
 		}

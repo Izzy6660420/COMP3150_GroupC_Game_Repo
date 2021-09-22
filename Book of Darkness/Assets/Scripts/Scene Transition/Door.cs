@@ -12,43 +12,26 @@ public class Door : MonoBehaviour
         player = CharacterController2D.instance;
     }
     
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (!player.canEnter)
             return;
 
-        var currentScene = SceneManager.GetActiveScene().name;
-        var nextScene = this.name;
-
-        if (other.tag == "Player")
+            if (other.tag == "Player" && Input.GetButton(InputAxes.Interact))
         {
-            //  Don't destroy player
-            DontDestroyOnLoad(other.gameObject);
-
             // Stops infinite loading loop
             player.canEnter = false;
-
-            //  Load the scene
-            StartCoroutine(loadScene(other, currentScene, nextScene));
+            SpawnManager.instance.Warp(transform.name);
+            
+            Debug.Log("Warp to: " + transform.name);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        player.canEnter = true;
-    }
-
-    IEnumerator loadScene(Collider2D other, string currentScene, string nextScene)
-    {
-        // Save current scene name
-        SpawnManager.instance.AppendOriginScene(currentScene);
-
-        //  Load next scene
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene);
-        while (!asyncLoad.isDone)
+        if (SpawnManager.instance.MatchScene(transform.name))
         {
-            Debug.Log("Loading scene...");
-            yield return null;
+            player.canEnter = true;
         }
     }
 }

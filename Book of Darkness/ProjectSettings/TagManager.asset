@@ -9,6 +9,7 @@ TagManager:
   - Torch
   - Ground
   - Door
+  - Hideable
   layers:
   - Default
   - TransparentFX

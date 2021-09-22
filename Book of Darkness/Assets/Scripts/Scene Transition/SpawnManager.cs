@@ -11,35 +11,27 @@ public class SpawnManager : MonoBehaviour
             Debug.Log("More than one instance of SceneManager detected!");
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private string fromScene;
     private Transform player;
+    private string scene = "Bedroom";
 
     void Start()
     {
         player = CharacterController2D.instance.transform;
     }
 
-    public void AppendOriginScene(string sceneName)
+    public void Warp(string toScene)
     {
-        fromScene = sceneName;
+        Debug.Log("Current scene: " + scene);
+        player.position = GameObject.Find(scene).transform.position;
+        scene = toScene;
+
+        CharacterController2D.instance.canEnter = false;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public bool MatchScene(string name)
     {
-        if (fromScene != null)
-        {
-            //  Look for door and set spawn
-            Vector3 spawnPoint = GameObject.Find(fromScene).transform.position;
-
-            // Move player to spawn
-            player.position = spawnPoint;
-
-            Debug.Log("Loaded from: " + fromScene + " at " + spawnPoint);
-        }
-        fromScene = null;
+        return name != scene;
     }
 }
