@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     private CharacterController2D player;
+    public Transform destinationTransform;
 
     void Start()
     {
@@ -21,15 +22,15 @@ public class Door : MonoBehaviour
         {
             // Stops infinite loading loop
             player.canEnter = false;
-            SpawnManager.instance.Warp(transform.name);
+            SpawnManager.instance.Warp(destinationTransform);
             
-            Debug.Log("Warp to: " + transform.name);
+            Debug.Log("Warp to: " + destinationTransform.name);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (SpawnManager.instance.MatchScene(transform.name))
+        if (SpawnManager.instance.MatchScene(destinationTransform.name))
         {
             player.canEnter = true;
         }

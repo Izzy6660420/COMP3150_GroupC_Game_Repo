@@ -21,11 +21,11 @@ public class SpawnManager : MonoBehaviour
         player = CharacterController2D.instance.transform;
     }
 
-    public void Warp(string toScene)
+    public void Warp(Transform destination)
     {
         Debug.Log("Current scene: " + scene);
-        player.position = GameObject.Find(scene).transform.position;
-        scene = toScene;
+        player.position = destination.position;
+        scene = destination.transform.name;
 
         CharacterController2D.instance.canEnter = false;
     }

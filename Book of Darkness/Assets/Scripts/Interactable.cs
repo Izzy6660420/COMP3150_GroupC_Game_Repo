@@ -10,9 +10,9 @@ public class Interactable : MonoBehaviour
         //For overriding
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && !hasInteracted)
+        if (col.gameObject.CompareTag("Player") && !hasInteracted && Input.GetButton(InputAxes.Interact))
         {
             Interact();
             hasInteracted = true;
