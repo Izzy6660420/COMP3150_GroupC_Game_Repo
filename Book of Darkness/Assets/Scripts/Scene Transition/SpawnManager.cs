@@ -14,24 +14,25 @@ public class SpawnManager : MonoBehaviour
     }
 
     private Transform player;
-    private string scene = "Bedroom";
 
     void Start()
     {
-        player = CharacterController2D.instance.transform;
+        player = Player.instance.transform;
     }
 
     public void Warp(Transform destination)
     {
-        Debug.Log("Current scene: " + scene);
+        string previousScene;
+        string currentScene;
+        string[] sceneNames = destination.name.Split(char.Parse(":"));
+
+        previousScene = sceneNames[1];
+        currentScene = sceneNames[0];
+        Debug.Log("Warped to: " + currentScene);
+
         player.position = destination.position;
-        scene = destination.transform.name;
+        Player.instance.ChangeScene(currentScene);
 
-        CharacterController2D.instance.canEnter = false;
-    }
-
-    public bool MatchScene(string name)
-    {
-        return name != scene;
+        Player.instance.canEnter = false;
     }
 }

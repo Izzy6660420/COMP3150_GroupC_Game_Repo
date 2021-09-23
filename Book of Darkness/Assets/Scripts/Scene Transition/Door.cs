@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    private CharacterController2D player;
-    public Transform destinationTransform;
+    private Player player;
+    private Transform destination;
+    string[] sceneNames;
 
     void Start()
     {
-        player = CharacterController2D.instance;
+        player = Player.instance;
+
+        sceneNames = transform.name.Split(char.Parse(":"));
+        destination = GameObject.Find(sceneNames[1] + ":" + sceneNames[0]).transform;
     }
     
     void OnTriggerStay2D(Collider2D other)
@@ -22,15 +26,14 @@ public class Door : MonoBehaviour
         {
             // Stops infinite loading loop
             player.canEnter = false;
-            SpawnManager.instance.Warp(destinationTransform);
-            
-            Debug.Log("Warp to: " + destinationTransform.name);
+            SpawnManager.instance.Warp(destination);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (SpawnManager.instance.MatchScene(destinationTransform.name))
+        
+        if (!Player.instance.CompareScene(sceneNames[1]))
         {
             player.canEnter = true;
         }

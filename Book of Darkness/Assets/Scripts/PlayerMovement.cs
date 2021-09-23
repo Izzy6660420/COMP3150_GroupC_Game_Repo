@@ -3,40 +3,45 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController2D controller;
+    private Player player;
     bool hiding = false;
     public float runSpeed = 40f;
+
+    void Start()
+    {
+        player = Player.instance;
+    }
 
     void Update()
     {
         if (Input.GetButtonDown(InputAxes.Interact))
         {
-            if (!hiding && controller.canHideInf())
+            if (!hiding && player.canHideInf())
             {
                 hiding = true;
-                controller.currentState.ChangeState(controller.HidingState);
+                player.currentState.ChangeState(player.HidingState);
             }
             else
             {
                 hiding = false;
-                controller.currentState.ChangeState(controller.ExposedState);
+                player.currentState.ChangeState(player.ExposedState);
             }
-            controller.currentState.DoState(hiding);
+            player.currentState.DoState(hiding);
         }
 
         if(!hiding)
         {
             // Torch Control
-            if(Input.GetButtonDown(InputAxes.Torch) && controller.playerTorch.usableBool()) 
+            if(Input.GetButtonDown(InputAxes.Torch) && player.playerTorch.usableBool()) 
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                controller.playerTorch.SetActive(!controller.playerTorch.torchLight.enabled);
+                player.playerTorch.SetActive(!player.playerTorch.torchLight.enabled);
             }
 
             if(Input.GetButtonDown(InputAxes.DimensionSwitch))
             {
-                
+
                 DimensionController.Instance.CameraSwitch();
 
                 if(DimensionController.Instance.dimensionInf().Equals("darkness")) 
@@ -51,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            controller.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));
+            player.currentState.DoState(Input.GetButtonDown(InputAxes.Jump));
         }
     }
 }

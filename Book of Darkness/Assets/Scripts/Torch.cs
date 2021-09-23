@@ -5,8 +5,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Torch : MonoBehaviour
 {
+    private Player player;
     public Transform arm;
-    public CharacterController2D cc2D;
     public Light2D torchLight;
     public Light2D torchLightBG;
     public PolygonCollider2D polyCol;
@@ -24,6 +24,7 @@ public class Torch : MonoBehaviour
     {
         torchBar = TorchUI.instance;
         torchBar.SetBatteryCeiling(maxPower, minPower);
+        player = Player.instance;
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class Torch : MonoBehaviour
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (mPos - (Vector2)arm.position).normalized;
 
-        if (cc2D.m_FacingRight)
+        if (player.facingRight)
         {
             arm.right = dir;
         }

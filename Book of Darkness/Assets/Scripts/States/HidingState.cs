@@ -5,22 +5,22 @@ using UnityEngine;
 public class HidingState : PlayerState
 {
 
-    CharacterController2D controller;
-    public HidingState(CharacterController2D cont)
+    Player player;
+    public HidingState(Player cont)
     {
-        controller = cont;
+        player = cont;
     }
 
     public void DoState(bool hide)
     {
-        controller.HidePlayer(true);
-        controller.m_Rigidbody2D.velocity = new Vector2(0, 0);
+        player.HidePlayer(true);
+        player.rigidbody.velocity = new Vector2(0, 0);
     }
 
     public void ChangeState(PlayerState state)
     {
-        controller.HidePlayer(false);
-        controller.currentState = state;
+        player.HidePlayer(false);
+        player.currentState = state;
     }
 
     public string NameToString()

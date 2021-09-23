@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        player = CharacterController2D.instance.transform;
+        player = Player.instance.transform;
     }
 
     void Update()

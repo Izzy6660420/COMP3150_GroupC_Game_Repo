@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        target = FindObjectOfType<CharacterController2D>().transform;
+        target = FindObjectOfType<Player>().transform;
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour
             //reachedEnd = false;
         }
 
-        if (!stunned)
+        if (!stunned && Player.instance.CompareScene(transform.parent.name))
         {
             Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
             Vector2 force = dir * speed * Time.deltaTime;

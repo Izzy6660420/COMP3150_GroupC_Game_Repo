@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class ExposedState : PlayerState
 {
-    CharacterController2D controller;
+    Player player;
     float hMove = 0f;
     public float runSpeed = 40f;
-    public ExposedState(CharacterController2D cont)
+    public ExposedState(Player cont)
     {
-        controller = cont;
+        player = cont;
     }
 
     public void DoState(bool jump)
     {
         hMove = Input.GetAxisRaw(InputAxes.Horizontal) * runSpeed;
-        controller.Move(hMove * Time.fixedDeltaTime, jump);
+        player.Move(hMove * Time.fixedDeltaTime, jump);
         jump = false;
     }
 
     public void ChangeState(PlayerState state)
     {
-        controller.currentState = state;
+        player.currentState = state;
     }
 
     public string NameToString()
