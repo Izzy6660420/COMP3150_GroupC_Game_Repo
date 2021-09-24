@@ -53,20 +53,28 @@ public class EnemyAI : MonoBehaviour
             //reachedEnd = false;
         }
 
-        if (!stunned && Player.instance.CompareScene(transform.parent.name))
+        if (!stunned)
         {
-            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = dir * speed * Time.deltaTime;
+            if (Player.instance.CompareScene(transform.parent.name))
+            {
+                Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+                Vector2 force = dir * speed * Time.deltaTime;
 
-            rb.AddForce(force);
-            if (force.x >= 0.01f)
-            {
-                enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                rb.AddForce(force);
+                if (force.x >= 0.01f)
+                {
+                    enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                }
+                else if (force.x <= -0.01f)
+                {
+                    enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                }
             }
-            else if (force.x <= -0.01f)
+            else
             {
-                enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                // Return to patrol path
             }
+            
         }
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
