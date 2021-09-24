@@ -6,7 +6,7 @@ public class ItemPickup : Interactable
 {
     public Item item;
 
-	public override void Interact()
+	public override void Interact(Collider2D col)
     {
         PickUp();
     }
