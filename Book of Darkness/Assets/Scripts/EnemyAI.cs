@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     public float speed = 2000f;
     public float nextDist = 3f;
+    public float startTimer = 2f;
 
     public Transform enemyGFX;
 
@@ -57,17 +58,22 @@ public class EnemyAI : MonoBehaviour
         {
             if (Player.instance.CompareScene(transform.parent.name))
             {
-                Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-                Vector2 force = dir * speed * Time.deltaTime;
+                // Delay upon seeing player
+                startTimer -= Time.fixedDeltaTime;
+                if (startTimer <= 0)
+                {
+                    Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+                    Vector2 force = dir * speed * Time.deltaTime;
 
-                rb.AddForce(force);
-                if (force.x >= 0.01f)
-                {
-                    enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
-                }
-                else if (force.x <= -0.01f)
-                {
-                    enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                    rb.AddForce(force);
+                    if (force.x >= 0.01f)
+                    {
+                        enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                    }
+                    else if (force.x <= -0.01f)
+                    {
+                        enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                    }
                 }
             }
             else
