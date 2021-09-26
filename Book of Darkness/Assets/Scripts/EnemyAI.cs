@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (path == null)
+        if (path == null || stunned)
         {
             return;
         }
@@ -55,35 +55,31 @@ public class EnemyAI : MonoBehaviour
             //reachedEnd = false;
         }
 
-        if (!stunned)
+        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0)
         {
-            if (Player.instance.CompareScene(transform.parent.name))
+            // Delay upon seeing player
+            startTimer -= Time.fixedDeltaTime;
+            if (startTimer <= 0)
             {
-                // Delay upon seeing player
-                startTimer -= Time.fixedDeltaTime;
-                if (startTimer <= 0)
-                {
-                    Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-                    Vector2 force = dir * speed * Time.deltaTime;
+                Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+                Vector2 force = dir * speed * Time.deltaTime;
 
-                    rb.AddForce(force);
-                    if (force.x >= 0.01f)
-                    {
-                        enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
-                        fov.FlipFOV("Right");
-                    }
-                    else if (force.x <= -0.01f)
-                    {
-                        enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-                        fov.FlipFOV("Left");
-                    }
+                rb.AddForce(force);
+                if (force.x >= 0.01f)
+                {
+                    enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                    fov.FlipFOV("Right");
+                }
+                else if (force.x <= -0.01f)
+                {
+                    enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                    fov.FlipFOV("Left");
                 }
             }
-            else
-            {
-                // Return to patrol path
-            }
-            
+        }
+        else
+        {
+            // Return to patrol path
         }
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
