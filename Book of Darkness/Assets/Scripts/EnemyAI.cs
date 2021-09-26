@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     public float startTimer = 2f;
 
     public Transform enemyGFX;
+    public FieldOfView fov;
 
     Path path;
     int currentWaypoint = 0;
@@ -69,10 +70,12 @@ public class EnemyAI : MonoBehaviour
                     if (force.x >= 0.01f)
                     {
                         enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                        fov.FlipFOV("Right");
                     }
                     else if (force.x <= -0.01f)
                     {
                         enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                        fov.FlipFOV("Left");
                     }
                 }
             }
