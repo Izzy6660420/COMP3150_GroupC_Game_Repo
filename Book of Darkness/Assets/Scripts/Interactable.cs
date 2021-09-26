@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour
     public float radius = 1f;
     bool hasInteracted = false;
 
-    public virtual void Interact()
+    public virtual void Interact(Collider2D col)
     {
         //For overriding
     }
@@ -14,15 +14,21 @@ public class Interactable : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player") && !hasInteracted && Input.GetButton(InputAxes.Interact))
         {
-            Interact();
+            Interact(col);
             hasInteracted = true;
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             hasInteracted = false;
         }
+    }
+
+    public void SetInteracted(bool b)
+    {
+        hasInteracted = b;
     }
 }

@@ -11,7 +11,7 @@ public class Battery : Interactable
         inventory = Inventory.instance;
     }
 
-    public override void Interact()
+    public override void Interact(Collider2D col)
     {
         Inventory.instance.AddBattery();
         Destroy(gameObject);
