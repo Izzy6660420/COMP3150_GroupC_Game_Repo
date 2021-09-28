@@ -14,7 +14,7 @@ public class LightsOutEvent : TriggerEvents
     };
 
     public LightEvents lightEvents;
-    public Light2D light;
+    new public Light2D light;
     public float flickerTimer;
 
     private float timer;
@@ -27,7 +27,7 @@ public class LightsOutEvent : TriggerEvents
             if(timer > 0)
             {
                 timer -= Time.deltaTime;
-                Debug.Log("hi");
+                //Debug.Log("hi");
             }
             else
             {

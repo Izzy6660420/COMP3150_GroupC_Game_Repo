@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     Transform target;
 
-    public float speed = 2000f;
+    public float speed = 70000f;
     public float nextDist = 3f;
     public float startTimer = 2f;
 
