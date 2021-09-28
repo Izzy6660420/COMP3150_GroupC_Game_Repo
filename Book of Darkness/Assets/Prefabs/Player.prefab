@@ -286,21 +286,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec9dfa2921b61f429a6be55f1bf6e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 500
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  jumpForce: 500
+  movementSmoothing: 0.05
+  airControl: 1
+  whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
-  m_GroundCheck: {fileID: 1268084537174212262}
-  m_CeilingCheck: {fileID: 1268084536012552588}
-  m_Rigidbody2D: {fileID: 1268084536011138631}
-  m_FacingRight: 1
+    m_Bits: 4294967295
+  groundCheck: {fileID: 1268084537174212262}
+  rigidbody: {fileID: 1268084536011138631}
+  facingRight: 1
   playerTorch: {fileID: 1268084536011138625}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   canEnter: 1
+  scene: Bedroom
 --- !u!114 &1268084536011138626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d141f1e8badb9445b5e97b99055f89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1268084536011138680}
   runSpeed: 30
 --- !u!114 &1268084536011138625
 MonoBehaviour:
@@ -328,12 +327,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 1268084535394032081}
-  cc2D: {fileID: 1268084536011138680}
   torchLight: {fileID: 1268084536787848218}
   torchLightBG: {fileID: 1268084536963770709}
   polyCol: {fileID: 1268084536787848217}
   gameObj: {fileID: 1268084536787848220}
-  power: 10
+  power: 100
   powerDrain: 1
 --- !u!114 &1268084536011138639
 MonoBehaviour:
