@@ -181,4 +181,9 @@ public class Player : MonoBehaviour
     {
 		return other == scene;
     }
+
+	public bool IsHiding()
+    {
+		return (currentState == HidingState);
+    }
 }
