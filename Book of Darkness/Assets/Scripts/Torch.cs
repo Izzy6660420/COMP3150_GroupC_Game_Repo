@@ -16,6 +16,7 @@ public class Torch : MonoBehaviour
     private float maxPower = 20.0f;
     private float minPower = 0.0f;
     public float powerDrain = 1.0f;
+    public AudioClip buttonClickSfx;
 
     private TorchUI torchBar;
     private bool usable = true;
@@ -70,6 +71,7 @@ public class Torch : MonoBehaviour
         torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
+        AudioManager.instance.PlaySound(buttonClickSfx, transform.position);
     }
 
     public bool usableBool()
