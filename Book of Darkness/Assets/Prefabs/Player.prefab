@@ -333,6 +333,7 @@ MonoBehaviour:
   gameObj: {fileID: 1268084536787848220}
   power: 100
   powerDrain: 1
+  buttonClickSfx: {fileID: 8300000, guid: f71e6fb053e3f9f449202e6f056655a1, type: 3}
 --- !u!114 &1268084536011138639
 MonoBehaviour:
   m_ObjectHideFlags: 0
