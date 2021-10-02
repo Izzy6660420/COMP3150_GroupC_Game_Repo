@@ -23,10 +23,7 @@ public class Player : MonoBehaviour
 
 	public Torch playerTorch;
 	private TorchUI torchUI;
-	private float torchBarOffset = 1.5f;
-
 	private PanicUI panicUI;
-	private float panicBarOffset = 2.0f;
 
 	[Header("Events")]
 	[Space]
@@ -93,9 +90,7 @@ public class Player : MonoBehaviour
 
 	public void Update()
     {
-		torchUI.setLocation(new Vector3(transform.position.x, transform.position.y + torchBarOffset, 0.0f));
 		torchUI.SetCamera(DimensionController.Instance.MainCam());
-		panicUI.setLocation(new Vector3(transform.position.x, transform.position.y + panicBarOffset, 0.0f));
 		panicUI.SetCamera(DimensionController.Instance.MainCam());
     }
 

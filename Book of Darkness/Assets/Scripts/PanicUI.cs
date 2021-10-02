@@ -34,11 +34,6 @@ public class PanicUI : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void setLocation(Vector3 location)
-    {
-        transform.position = location;
-    }
-
     public void SetCamera(Camera cam)
     {
         uiCam = cam;
