@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5462860138291545381}
   - component: {fileID: 3063394576228664044}
   - component: {fileID: 5106778249771824465}
-  - component: {fileID: 6092542037563885163}
   - component: {fileID: 2994962293238823816}
   - component: {fileID: 5256865235380479615}
   m_Layer: 7
@@ -100,34 +99,6 @@ CircleCollider2D:
   m_Offset: {x: 0.07285854, y: -0.5181296}
   serializedVersion: 2
   m_Radius: 0.98201203
---- !u!114 &6092542037563885163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2465463040823092792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!114 &2994962293238823816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,4 +419,4 @@ MonoBehaviour:
   - {x: -0.99931335, y: -0.95704746, z: 0}
   m_ShapePathHash: 1544982267
   m_Mesh: {fileID: 0}
-  m_InstanceId: 20772
+  m_InstanceId: 23346
