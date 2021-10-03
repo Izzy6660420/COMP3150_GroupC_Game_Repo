@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -17,11 +18,20 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D rb;
     float nextDst = 2f;
     bool onPath = false;
+    float forgetTimer = 3f;
+    public GameObject shadow;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
+    }
+
+    void Update()
+    {
+        shadow.SetActive(true);
+        if (DimensionController.instance.dimensionInf() == "nightmare")
+            shadow.SetActive(false);
     }
 
     void FixedUpdate()
@@ -34,12 +44,11 @@ public class EnemyAI : MonoBehaviour
         {
             onPath = false;
         }
-            
 
-        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0 && !Player.instance.IsHiding())
+        if (Player.instance.CompareScene(transform.parent.name) && fov.FindVisibleTargetsInLayer("Player") && !Player.instance.IsHiding())
         {
-            // Delay upon seeing player
             target = Player.instance.transform;
+            forgetTimer = 3f;
 
             startTimer -= Time.fixedDeltaTime;
             if (startTimer <= 0)
@@ -49,8 +58,12 @@ public class EnemyAI : MonoBehaviour
         }
         else if (!onPath)
         {
-            target = GetClosestPatrolPoint(target);
-            onPath = true;
+            forgetTimer -= Time.fixedDeltaTime;
+            if (forgetTimer <= 0)
+            {
+                target = GetClosestPatrolPoint(false, target);
+                onPath = true;
+            }
         }
 
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
@@ -80,8 +93,11 @@ public class EnemyAI : MonoBehaviour
             stunned = false;
     }
 
-    Transform GetClosestPatrolPoint(Transform currentPoint = null)
+    Transform GetClosestPatrolPoint(bool chasePlayer, Transform currentPoint = null)
     {
+        if (chasePlayer)
+            return Player.instance.transform;
+
         Transform closestPoint = null;
         float minDist = Mathf.Infinity;
 
@@ -95,5 +111,11 @@ public class EnemyAI : MonoBehaviour
             }
         }
         return closestPoint;
+    }
+
+    void OnDrawGizmos()
+    {
+        foreach (Transform point in patrolPoints)
+            Handles.DrawWireDisc(point.position, new Vector3(0, 0, 1), nextDst);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DimensionController : MonoBehaviour
 {
-    static private DimensionController instance;
+    static public DimensionController instance;
     static private Camera mainCamera;
     public Camera nightmare;
     public Camera darkness;
@@ -42,8 +42,6 @@ public class DimensionController : MonoBehaviour
         panicBar.SetPanicCeiling(maxPanic, minPanic);
     }
 
-
-
     void Update()
     {
         if (darkness.enabled)
@@ -55,6 +53,8 @@ public class DimensionController : MonoBehaviour
 
     public void CameraSwitch()
     {
+        if (!Inventory.instance.HasItem("Book"))
+            return;
         if(nightmare.enabled) 
         {
             nightmare.enabled = false;

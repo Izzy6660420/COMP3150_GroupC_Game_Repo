@@ -88,10 +88,11 @@ public class Player : MonoBehaviour
 
 		// Character direction by cursor position
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(rigidbody.position);
-		if(dir.x > 0 && !facingRight)
+		if (dir.x > 0 && !facingRight)
 		{
 			Flip();
-		} else if(dir.x < 0 && facingRight)
+		}
+		else if (dir.x < 0 && facingRight)
 		{
 			Flip();
 		}
@@ -110,7 +111,6 @@ public class Player : MonoBehaviour
 
 	public void HidePlayer(bool hideBool)
     {
-		Physics2D.IgnoreLayerCollision(3, 7,  hideBool);
 		renderer.enabled = hideBool;
 		playerTorch.SetActive(!hideBool);
 		torchBar.SetActive(!hideBool);

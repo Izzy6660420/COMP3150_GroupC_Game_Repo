@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
         batteryText.text = "Batteries: " + batteries.ToString();
     }
 
-    public bool hasItem(string itemName)
+    public bool HasItem(string itemName)
     {
         foreach (Item item in items)
         {

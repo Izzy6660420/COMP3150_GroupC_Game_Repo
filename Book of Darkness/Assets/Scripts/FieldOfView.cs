@@ -50,6 +50,16 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    public bool FindVisibleTargetsInLayer(string layer)
+    {
+        foreach (Transform body in visibleTargets)
+        {
+            if (body.gameObject.layer == LayerMask.NameToLayer(layer))
+                return true;
+        }
+        return false;
+    }
+
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)

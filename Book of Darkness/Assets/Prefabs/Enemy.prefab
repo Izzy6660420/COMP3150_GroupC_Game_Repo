@@ -118,6 +118,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
+  shadow: {fileID: 9217428937570104124}
 --- !u!114 &5256865235380479615
 MonoBehaviour:
   m_ObjectHideFlags: 0
