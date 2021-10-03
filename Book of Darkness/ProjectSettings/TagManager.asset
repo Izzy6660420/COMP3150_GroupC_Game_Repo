@@ -7,9 +7,9 @@ TagManager:
   - Furniture
   - Enemies
   - Torch
-  - Ground
   - Door
   - Hideable
+  - Obstacle
   layers:
   - Default
   - TransparentFX

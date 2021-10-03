@@ -5,59 +5,39 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    
-
     public float speed = 70000f;
-    public float nextDist = 3f;
     public float startTimer = 2f;
 
     public Transform enemyGFX;
     public FieldOfView fov;
-
-    Path path;
-    int currentWaypoint = 0;
-    bool reachedEnd = false;
     bool stunned = false;
 
     public List<Transform> patrolPoints = new List<Transform>();
     Transform currentPoint;
     Transform target;
-
-    Seeker seeker;
     Rigidbody2D rb;
+    float nextDst = 2f;
+    bool onPath = false;
 
     void Start()
     {
-        seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
-
-        InvokeRepeating("UpdatePath", 0f, .5f);
-    }
-
-    void UpdatePath()
-    {
-        if (seeker.IsDone())
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
     void FixedUpdate()
     {
-        if (path == null || stunned)
-        {
+        if (stunned)
             return;
-        }
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            target = GetClosestPatrolPoint(target);
-            return;
-        }
-        else
-        {
-            reachedEnd = false;
-        }
 
-        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0)
+        float dst = Vector2.Distance((Vector2)target.position, rb.position);
+        if (dst < nextDst)
+        {
+            onPath = false;
+        }
+            
+
+        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0 && !Player.instance.IsHiding())
         {
             // Delay upon seeing player
             target = Player.instance.transform;
@@ -68,12 +48,13 @@ public class EnemyAI : MonoBehaviour
                 
             }
         }
-        else
+        else if (!onPath)
         {
-            target = GetClosestPatrolPoint();
+            target = GetClosestPatrolPoint(target);
+            onPath = true;
         }
 
-        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 dir = ((Vector2)target.position - rb.position).normalized;
         Vector2 force = dir * speed * Time.deltaTime;
 
         rb.AddForce(force);
@@ -87,10 +68,6 @@ public class EnemyAI : MonoBehaviour
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
             fov.FlipFOV("Left");
         }
-
-        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if (dist < nextDist)
-            currentWaypoint++;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -102,15 +79,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Torch"))
             stunned = false;
-    }
-
-    void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
     }
 
     Transform GetClosestPatrolPoint(Transform currentPoint = null)
