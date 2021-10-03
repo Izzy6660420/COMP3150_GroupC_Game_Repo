@@ -7,16 +7,10 @@ public class Player : MonoBehaviour
 {
 	public static Player instance;
 
-	[SerializeField] private float jumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;  // How much to smooth out the movement
-	[SerializeField] private bool airControl = false;                         // Whether or not a player can steer while jumping;
-	[SerializeField] private LayerMask whatIsGround;                          // A mask determining what is ground to the character
-	[SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
 
-	const float groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool grounded;            // Whether or not the player is grounded.
 	new public Rigidbody2D rigidbody;
-	public bool facingRight = true;  // For determining which way the player is currently facing.
+	public bool facingRight = true;   // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
 	new private SpriteRenderer renderer;
 	private SpriteRenderer[] subsprites;
@@ -24,11 +18,8 @@ public class Player : MonoBehaviour
 	public Torch playerTorch;
 	private TorchUI torchUI;
 	private PanicUI panicUI;
-
-	[Header("Events")]
-	[Space]
-
-	public UnityEvent OnLandEvent;
+	private GameObject torchBar;
+	private GameObject panicBar;
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -52,9 +43,6 @@ public class Player : MonoBehaviour
 		subsprites = GetComponentsInChildren<SpriteRenderer>();
 		playerTorch = GetComponent<Torch>();
 		scene = transform.parent.name;
-
-		if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
 	}
 
 	private void Start() 
@@ -64,28 +52,9 @@ public class Player : MonoBehaviour
 		currentState = ExposedState;
 		torchUI = TorchUI.instance;
 		panicUI = PanicUI.instance;
-	}
 
-	private void FixedUpdate() 
-	{
-		bool wasGrounded = grounded;
-		grounded = false;
-
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			GameObject go = colliders[i].gameObject;
-			if (go != gameObject & go.CompareTag("Ground"))
-			{
-				grounded = true;
-				if (!wasGrounded)
-                {
-					OnLandEvent.Invoke();
-				}
-			}
-		}
+		torchBar = torchUI.gameObject;
+		panicBar = panicUI.gameObject;
 	}
 
 	public void Update()
@@ -112,29 +81,19 @@ public class Player : MonoBehaviour
 
 	public void Move(float move, bool jump) {
 
-		// Only control the player if grounded or airControl is turned on
-		if (grounded || airControl)
-		{
-			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, rigidbody.velocity.y);
-			// Smooth it out and apply it to the player
-			rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref velocity, movementSmoothing);
+		// Move the character by finding the target velocity
+		Vector3 targetVelocity = new Vector2(move * 10f, rigidbody.velocity.y);
+		// Smooth it out and apply it to the player
+		rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref velocity, movementSmoothing);
 
-			// Character direction by cursor position
-			Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(rigidbody.position);
-			if(dir.x > 0 && !facingRight)
-			{
-				Flip();
-			} else if(dir.x < 0 && facingRight)
-			{
-				Flip();
-			}
-		}
-		// Jumping
-		if (grounded && jump)
+		// Character direction by cursor position
+		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(rigidbody.position);
+		if(dir.x > 0 && !facingRight)
 		{
-			grounded = false;
-			rigidbody.AddForce(new Vector2(0f, jumpForce));
+			Flip();
+		} else if(dir.x < 0 && facingRight)
+		{
+			Flip();
 		}
 	}
 
@@ -154,7 +113,8 @@ public class Player : MonoBehaviour
 		Physics2D.IgnoreLayerCollision(3, 7,  hideBool);
 		renderer.enabled = hideBool;
 		playerTorch.SetActive(!hideBool);
-		torchUI.enabled = !hideBool;
+		torchBar.SetActive(!hideBool);
+		panicBar.SetActive(!hideBool);
 
 		for (int i = 0; i < subsprites.Length; i++)
 		{

@@ -38,4 +38,9 @@ public class PanicUI : MonoBehaviour
     {
         uiCam = cam;
     }
+
+    public void Hide(bool b)
+    {
+
+    }
 }

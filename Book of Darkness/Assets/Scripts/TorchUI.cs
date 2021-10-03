@@ -38,4 +38,9 @@ public class TorchUI : MonoBehaviour
     {
         uiCam = cam;
     }
+
+    public void Hide(bool b)
+    {
+
+    }
 }

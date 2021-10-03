@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player") && tooltip != null)
-            DisplayTooltip();
+            DisplayTooltip(true);
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -39,22 +39,20 @@ public class Interactable : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
+        {
             hasInteracted = false;
+        }
+            
     }
 
     public void SetInteracted(bool b)
     {
+        DisplayTooltip(false);
         hasInteracted = b;
     }
 
-    public void DisplayTooltip()
+    public void DisplayTooltip(bool b)
     {
-        tooltip.SetActive(true);
-        Invoke("HideTooltip", 1f);
-    }
-
-    void HideTooltip()
-    {
-        tooltip.SetActive(false);
+        tooltip.SetActive(b);
     }
 }
