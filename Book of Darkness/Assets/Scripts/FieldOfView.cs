@@ -65,6 +65,5 @@ public class FieldOfView : MonoBehaviour
             return;
         lastDir = dir;
         viewAngle = Mathf.Abs(viewAngle + 180) % 360;
-        Debug.Log(viewAngle);
     }
 }

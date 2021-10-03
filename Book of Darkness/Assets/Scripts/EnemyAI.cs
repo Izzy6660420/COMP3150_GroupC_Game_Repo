@@ -1,115 +1,99 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    Transform target;
-
     public float speed = 70000f;
-    public float nextDist = 3f;
     public float startTimer = 2f;
 
     public Transform enemyGFX;
     public FieldOfView fov;
-
-    Path path;
-    int currentWaypoint = 0;
-    //bool reachedEnd = false;
     bool stunned = false;
 
-    Seeker seeker;
+    public List<Transform> patrolPoints = new List<Transform>();
+    Transform currentPoint;
+    Transform target;
     Rigidbody2D rb;
+    float nextDst = 2f;
+    bool onPath = false;
 
     void Start()
     {
-        seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
-
-        InvokeRepeating("UpdatePath", 0f, .5f);
-    }
-
-    void UpdatePath()
-    {
-        if (seeker.IsDone())
-        {
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
-        }
     }
 
     void FixedUpdate()
     {
-        if (path == null || stunned)
-        {
+        if (stunned)
             return;
-        }
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            //reachedEnd = true;
-            return;
-        }
-        else
-        {
-            //reachedEnd = false;
-        }
 
-        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0)
+        float dst = Vector2.Distance((Vector2)target.position, rb.position);
+        if (dst < nextDst)
+        {
+            onPath = false;
+        }
+            
+
+        if (Player.instance.CompareScene(transform.parent.name) && fov.visibleTargets.Count > 0 && !Player.instance.IsHiding())
         {
             // Delay upon seeing player
+            target = Player.instance.transform;
+
             startTimer -= Time.fixedDeltaTime;
             if (startTimer <= 0)
             {
-                Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-                Vector2 force = dir * speed * Time.deltaTime;
-
-                rb.AddForce(force);
-                if (force.x >= 0.01f)
-                {
-                    enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
-                    fov.FlipFOV("Right");
-                }
-                else if (force.x <= -0.01f)
-                {
-                    enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-                    fov.FlipFOV("Left");
-                }
+                
             }
         }
-        else
+        else if (!onPath)
         {
-            // Return to patrol path
+            target = GetClosestPatrolPoint(target);
+            onPath = true;
         }
 
-        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if (dist < nextDist)
+        Vector2 dir = ((Vector2)target.position - rb.position).normalized;
+        Vector2 force = dir * speed * Time.deltaTime;
+
+        rb.AddForce(force);
+        if (force.x >= 0.01f)
         {
-            currentWaypoint++;
+            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            fov.FlipFOV("Right");
+        }
+        else if (force.x <= -0.01f)
+        {
+            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            fov.FlipFOV("Left");
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Torch"))
-        {
             stunned = true;
-        }
     }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Torch"))
-        {
             stunned = false;
-        }
     }
 
-    void OnPathComplete(Path p)
+    Transform GetClosestPatrolPoint(Transform currentPoint = null)
     {
-        if (!p.error)
+        Transform closestPoint = null;
+        float minDist = Mathf.Infinity;
+
+        foreach (Transform point in patrolPoints)
         {
-            path = p;
-            currentWaypoint = 0;
+            float dist = Vector3.Distance(point.position, transform.position);
+            if (dist < minDist && point != currentPoint)
+            {
+                closestPoint = point;
+                minDist = dist;
+            }
         }
+        return closestPoint;
     }
 }
