@@ -15,8 +15,8 @@ public class DimensionController : MonoBehaviour
     private float minPanic = 0.0f;
     public float panicGain = 1.0f;
 
-    private const string nightmareStr = "nightmare";
-    private const string darknessStr = "darkness";
+    public const string nightmareStr = "nightmare";
+    public const string darknessStr = "darkness";
     private string dimensionStr;
 
     public static DimensionController Instance
