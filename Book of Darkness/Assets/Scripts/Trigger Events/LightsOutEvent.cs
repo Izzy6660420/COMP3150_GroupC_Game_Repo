@@ -5,6 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class LightsOutEvent : TriggerEvents
 {
+    
     public enum LightEvents
     {
         LightFlicker,
@@ -13,6 +14,7 @@ public class LightsOutEvent : TriggerEvents
         LightTurnOn
     };
 
+    [SerializeField]
     public LightEvents lightEvents;
     new public Light2D light;
     public float flickerTimer;
@@ -42,6 +44,8 @@ public class LightsOutEvent : TriggerEvents
     {
         if(col.CompareTag("Player")) 
         {
+            if(!triggered) collidersEnable();
+
             switch(lightEvents)
             {
                 case LightEvents.LightTurnOff:
@@ -60,7 +64,12 @@ public class LightsOutEvent : TriggerEvents
                 break;
             }
 
-            if(timer <= 0) gameObject.SetActive(false);
+            if(timer <= 0) 
+            {
+                gameObject.SetActive(false);
+            }
+
+
         }
     }
 
@@ -72,5 +81,13 @@ public class LightsOutEvent : TriggerEvents
     public override void OnTriggerStay2D(Collider2D col)
     {
     
+    }
+
+    public override void collidersEnable()
+    {
+        foreach(GameObject go in secondaryColliders)
+        {
+            go.SetActive(true);
+        }
     }
 }

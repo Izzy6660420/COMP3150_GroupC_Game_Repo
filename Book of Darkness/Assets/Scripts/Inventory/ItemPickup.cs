@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemPickup : Interactable
 {
     public Item item;
+    public CustomizedMajorEvent customEvent;
 
 	public override void Interact(Collider2D col)
     {
@@ -16,6 +17,7 @@ public class ItemPickup : Interactable
         bool pickedUp = Inventory.instance.Add(item);
         if (pickedUp)
         {
+            if(customEvent != null) customEvent.triggerEvent();
             Destroy(gameObject);
         }
     }

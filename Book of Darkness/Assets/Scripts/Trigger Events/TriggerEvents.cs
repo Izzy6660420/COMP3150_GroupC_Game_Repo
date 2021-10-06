@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class TriggerEvents : MonoBehaviour
 {
+    public List<GameObject> secondaryColliders;
+
     public abstract void OnTriggerEnter2D(Collider2D col);
 
     public abstract void OnTriggerExit2D(Collider2D col);
 
     public abstract void OnTriggerStay2D(Collider2D col);
+
+    public abstract void collidersEnable();
 
 }
