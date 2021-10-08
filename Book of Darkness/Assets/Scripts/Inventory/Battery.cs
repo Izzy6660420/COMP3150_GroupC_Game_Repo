@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Battery : Interactable
 {
-    Inventory inventory;
-
-    void Start()
-    {
-        inventory = Inventory.instance;
-    }
+    public float charge = 0.2f;
 
     public override void Interact(Collider2D col)
     {
-        Inventory.instance.AddBattery();
+        Player.instance.torch.AddPower(charge);
         Destroy(gameObject);
     }
 }
