@@ -7,15 +7,17 @@ public class Player : MonoBehaviour
 {
 	public static Player instance;
 
-	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;  // How much to smooth out the movement
+	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
 
 	new public Rigidbody2D rigidbody;
-	public bool facingRight = true;   // For determining which way the player is currently facing.
+	[HideInInspector]
+	public bool facingRight, canEnter = true;
 	private Vector3 velocity = Vector3.zero;
 	new private SpriteRenderer renderer;
 	private SpriteRenderer[] subsprites;
 
-	public Torch playerTorch;
+	[HideInInspector]
+	public Torch torch;
 	private TorchUI torchUI;
 	private PanicUI panicUI;
 	private GameObject torchBar;
@@ -27,7 +29,6 @@ public class Player : MonoBehaviour
 	private bool canHide = false;
 	public PlayerState currentState;
 	public PlayerState ExposedState,HidingState;
-	public bool canEnter = true;
 	public string scene;
 
 	private void Awake()
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody2D>();
 		renderer = GetComponent<SpriteRenderer>();
 		subsprites = GetComponentsInChildren<SpriteRenderer>();
-		playerTorch = GetComponent<Torch>();
+		torch = GetComponent<Torch>();
 		scene = transform.parent.name;
 	}
 
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
 	public void HidePlayer(bool hideBool)
     {
 		renderer.enabled = hideBool;
-		playerTorch.SetActive(!hideBool);
+		torch.SetActive(!hideBool);
 		torchBar.SetActive(!hideBool);
 		panicBar.SetActive(!hideBool);
 

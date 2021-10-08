@@ -52,12 +52,6 @@ public class Inventory : MonoBehaviour
         items.Remove(item);
     }
 
-    public void AddBattery()
-    {
-        batteries++;
-        batteryText.text = "Batteries: " + batteries.ToString();
-    }
-
     public bool HasItem(string itemName)
     {
         foreach (Item item in items)

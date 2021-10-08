@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
         if(!hiding)
         {
             // Torch Control
-            if(Input.GetButtonDown(InputAxes.Torch) && player.playerTorch.usableBool()) 
+            if(Input.GetButtonDown(InputAxes.Torch) && player.torch.usableBool()) 
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                player.playerTorch.SetActive(!player.playerTorch.torchLight.enabled);
+                player.torch.SetActive(!player.torch.torchLight.enabled);
             }
 
             if(Input.GetButtonDown(InputAxes.DimensionSwitch))
