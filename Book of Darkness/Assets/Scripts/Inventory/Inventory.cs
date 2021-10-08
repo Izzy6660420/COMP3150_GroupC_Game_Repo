@@ -23,12 +23,6 @@ public class Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
     public int space = 5;
     public int batteries = 0;
-    private Text batteryText;
-
-    void Start()
-    {
-        batteryText = GameObject.Find("Battery Text").GetComponent<Text>();
-    }
 
     public bool Add(Item item)
     {
