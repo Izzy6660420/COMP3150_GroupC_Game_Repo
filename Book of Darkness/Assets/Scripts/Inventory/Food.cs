@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Food : Interactable
 {
     public Item item;
     new SpriteRenderer renderer;
+    public event Action<Food> itemChosenEvent;
 
     void Start()
     {
@@ -20,12 +22,18 @@ public class Food : Interactable
             {
                 Inventory.instance.Add(item);
                 renderer.enabled = false;
+                itemChosenEvent(this);
             }
             else
             {
-                Inventory.instance.Remove(item);
-                renderer.enabled = true;
+                Drop();
             }
         }
+    }
+
+    public void Drop()
+    {
+        Inventory.instance.Remove(item);
+        renderer.enabled = true;
     }
 }
