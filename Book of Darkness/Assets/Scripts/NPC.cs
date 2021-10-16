@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : Interactable
 {
-    public Dialogue dialogue;
+    public Dialogue[] dialogues;
     bool talkedTo = false;
     public Item requiredItem;
 
@@ -22,11 +22,11 @@ public class NPC : Interactable
         }
         else
         {
-            Talk();
+            Talk(dialogues[0]);
         }
     }
 
-    void Talk()
+    void Talk(Dialogue dialogue)
     {
         DialogueManager.instance.StartDialogue(dialogue);
         talkedTo = true;
