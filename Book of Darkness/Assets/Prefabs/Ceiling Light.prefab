@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Color: {r: 0.4245283, g: 0.01802242, b: 0.026066467, a: 1}
   m_Intensity: 0.99
   m_LightVolumeOpacity: 0.366
-  m_ApplyToSortingLayers: 0000000051ad0c7b6926dbb673f0a134e31eca497b59cf54e7ea456fef3a12be
+  m_ApplyToSortingLayers: 0000000051ad0c7b6926dbb673f0a134e31eca497b59cf54
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinimumTimeDelay: 0
   MaximumTimeDelay: 0
+  MinimumLightIntensity: 0
+  MaximumLightIntensity: 0
   flicker: 0
 --- !u!1 &3067511445638342119
 GameObject:
@@ -222,7 +224,7 @@ MonoBehaviour:
   m_Color: {r: 0.7169812, g: 0.61557084, b: 0.47686014, a: 1}
   m_Intensity: 1.49
   m_LightVolumeOpacity: 0.08
-  m_ApplyToSortingLayers: 0000000051ad0c7b6926dbb673f0a134e31eca497b59cf54e7ea456fef3a12be
+  m_ApplyToSortingLayers: 0000000051ad0c7b6926dbb673f0a134e31eca497b59cf54
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -259,4 +261,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinimumTimeDelay: 0
   MaximumTimeDelay: 0
+  MinimumLightIntensity: 0
+  MaximumLightIntensity: 0
   flicker: 0
