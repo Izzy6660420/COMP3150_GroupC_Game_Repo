@@ -7,6 +7,7 @@ public class NPC : Interactable
     public Dialogue[] dialogues;
     bool talkedTo = false;
     public Item requiredItem;
+    public ItemGroup itemGroup;
 
     public override void Interact(Collider2D col)
     {
@@ -16,7 +17,25 @@ public class NPC : Interactable
             {
                 if (Inventory.instance.HasItem(requiredItem.name))
                 {
-                    // Player has required item.
+                    Talk(dialogues[2]);
+                }
+                else
+                {
+                    var hasItemFromGroup = false;
+                    foreach (Food item in itemGroup.items)
+                    {
+                        if (Inventory.instance.HasItem(item.item.name))
+                            hasItemFromGroup = true;
+                    }
+
+                    if (hasItemFromGroup)
+                    {
+                        Talk(dialogues[1]);
+                    }
+                    else
+                    {
+                        Talk(dialogues[3]);
+                    }
                 }
             }
         }
