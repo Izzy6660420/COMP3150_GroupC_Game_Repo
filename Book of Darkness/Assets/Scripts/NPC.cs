@@ -11,13 +11,14 @@ public class NPC : Interactable
 
     public override void Interact(Collider2D col)
     {
+        int i = 0;
         if (talkedTo)
         {
             if (requiredItem != null)
             {
                 if (Inventory.instance.HasItem(requiredItem.name))
                 {
-                    Talk(dialogues[2]);
+                    i = 2;
                 }
                 else
                 {
@@ -28,21 +29,15 @@ public class NPC : Interactable
                             hasItemFromGroup = true;
                     }
 
-                    if (hasItemFromGroup)
-                    {
-                        Talk(dialogues[1]);
-                    }
-                    else
-                    {
-                        Talk(dialogues[3]);
-                    }
+                    i = hasItemFromGroup ? 1 : 3
                 }
             }
         }
         else
         {
-            Talk(dialogues[0]);
+            i = 3;
         }
+        Talk(dialogue[i])
     }
 
     void Talk(Dialogue dialogue)
