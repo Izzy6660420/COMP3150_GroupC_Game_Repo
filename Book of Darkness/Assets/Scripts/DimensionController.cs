@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class DimensionController : MonoBehaviour
     public const string nightmareStr = "nightmare";
     public const string darknessStr = "darkness";
     private string dimensionStr;
+
+    public event Action DimensionSwitchEvent;
 
     public static DimensionController Instance
     {
@@ -72,6 +75,8 @@ public class DimensionController : MonoBehaviour
             mainCamera = nightmare;
             dimensionStr = nightmareStr;
         }
+        Debug.Log("Dimension Switched");
+        DimensionSwitchEvent?.Invoke();
     }
 
     public Camera MainCam()
