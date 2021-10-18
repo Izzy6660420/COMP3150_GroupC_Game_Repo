@@ -8,6 +8,7 @@ public class NPC : Interactable
     bool talkedTo = false;
     public Item requiredItem;
     public ItemGroup itemGroup;
+    bool recievedItem = false;
 
     public override void Interact(Collider2D col)
     {
@@ -19,6 +20,7 @@ public class NPC : Interactable
                 if (Inventory.instance.HasItem(requiredItem.name))
                 {
                     i = 2;
+                    recievedItem = true;
                 }
                 else
                 {
@@ -37,6 +39,9 @@ public class NPC : Interactable
         {
             i = 3;
         }
+
+        if (recievedItem)
+            i = 4;
         Talk(dialogues[i]);
     }
 
