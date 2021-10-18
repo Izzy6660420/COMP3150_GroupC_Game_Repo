@@ -5,10 +5,14 @@ using UnityEngine;
 public class NPC : Interactable
 {
     public Dialogue[] dialogues;
-    bool talkedTo = false;
     public Item requiredItem;
     public ItemGroup itemGroup;
+
+    bool talkedTo = false;
     bool recievedItem = false;
+    bool moved = false;
+
+    public Transform target;
 
     public override void Interact(Collider2D col)
     {
@@ -21,6 +25,7 @@ public class NPC : Interactable
                 {
                     i = 2;
                     recievedItem = true;
+                    if (!moved) StartCoroutine(Move());
                 }
                 else
                 {
@@ -37,7 +42,7 @@ public class NPC : Interactable
         }
         else
         {
-            i = 3;
+            i = 0;
         }
 
         if (recievedItem)
@@ -49,5 +54,19 @@ public class NPC : Interactable
     {
         DialogueManager.instance.StartDialogue(dialogue);
         talkedTo = true;
+    }
+
+    IEnumerator Move()
+    {
+        float step = 10 * Time.deltaTime;
+
+        while (Vector3.Distance(transform.position, target.position) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            yield return new WaitForSeconds(10f * Time.deltaTime);
+        }
+
+        moved = true;
+        yield return null;
     }
 }
