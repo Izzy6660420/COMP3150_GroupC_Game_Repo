@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Food 2
   m_EditorClassIdentifier: 
   name: Fish
-  icon: {fileID: 21300000, guid: aa0fccbc23df6764ca7b1dff186f20a9, type: 3}
+  icon: {fileID: 21300000, guid: 22f9580ebb2d51c4d9fbfdcf6efa1c95, type: 3}

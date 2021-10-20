@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0facd74c07e0327409a270b940807359, type: 3}
   m_Name: Food 3
   m_EditorClassIdentifier: 
-  name: Honey
-  icon: {fileID: 21300000, guid: ace4c20b03ea9b14d960e18e08caa256, type: 3}
+  name: Broccoli
+  icon: {fileID: 21300000, guid: b4946b6100cd71d45b12326259172390, type: 3}
