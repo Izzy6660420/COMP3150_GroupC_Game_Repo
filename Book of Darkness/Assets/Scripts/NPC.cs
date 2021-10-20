@@ -62,6 +62,7 @@ public class NPC : Interactable
 
         while (Vector3.Distance(transform.position, target.position) > 0.01f)
         {
+            Debug.Log("Moved");
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             yield return new WaitForSeconds(10f * Time.deltaTime);
         }
