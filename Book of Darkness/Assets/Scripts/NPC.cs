@@ -24,8 +24,13 @@ public class NPC : Interactable
                 if (Inventory.instance.HasItem(requiredItem.name))
                 {
                     i = 2;
-                    recievedItem = true;
-                    if (!moved) StartCoroutine(Move());
+                    
+                    if (!moved)
+                    {
+                        recievedItem = true;
+                        Inventory.instance.Remove(requiredItem);
+                        StartCoroutine(Move());
+                    }
                 }
                 else
                 {
