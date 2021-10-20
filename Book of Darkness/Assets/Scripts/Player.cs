@@ -113,8 +113,8 @@ public class Player : MonoBehaviour
 	public void HidePlayer(bool hideBool)
     {
 		renderer.enabled = hideBool;
-		torch.SetActive(!hideBool);
-		torchBar.SetActive(!hideBool);
+		torch.SetActive(false);
+		torchBar.SetActive(false);
 		panicBar.SetActive(!hideBool);
 
 		for (int i = 0; i < subsprites.Length; i++)
