@@ -6,7 +6,7 @@ public class EnemyFirstReveal : CustomizedMajorEvent
 {
 
     [SerializeField]
-    public GameObject eventSystem, monster;
+    public GameObject eventSystem, monster, teddyBear, rippedUpTeddy;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,8 @@ public class EnemyFirstReveal : CustomizedMajorEvent
     {    
         DimensionController.instance.CameraSwitch();
         monster.SetActive(true);
+        teddyBear.SetActive(false);
+        rippedUpTeddy.SetActive(true);
         yield return new WaitForSeconds(2);
         DimensionController.instance.CameraSwitch();
         yield return new WaitForSeconds(1);
