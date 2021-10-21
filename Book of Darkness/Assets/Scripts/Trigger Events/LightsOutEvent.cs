@@ -16,11 +16,17 @@ public class LightsOutEvent : TriggerEvents
 
     [SerializeField]
     public LightEvents lightEvents;
-    public Light2D light;
+    public Light2D sLight;
     public float flickerTimer;
+    FlickerControl fControl;
 
     private float timer;
     private bool triggered = false;
+
+    void Start()
+    {
+        fControl = sLight.GetComponent<FlickerControl>();
+    }
 
     public void Update()
     {
@@ -33,8 +39,8 @@ public class LightsOutEvent : TriggerEvents
             }
             else
             {
-                light.GetComponent<FlickerControl>().flicker = false;
-                light.enabled = false;
+                fControl.flicker = false;
+                sLight.enabled = false;
                 gameObject.SetActive(false);
             }
         }
@@ -49,27 +55,25 @@ public class LightsOutEvent : TriggerEvents
             switch(lightEvents)
             {
                 case LightEvents.LightTurnOff:
-                light.GetComponent<FlickerControl>().flicker = false;
-                light.enabled = false;
-                break;
+                    fControl.flicker = false;
+                    sLight.enabled = false;
+                    break;
 
                 case LightEvents.LightFlicker:
-                light.GetComponent<FlickerControl>().flicker = true;
-                break;
+                    fControl.flicker = true;
+                    break;
 
                 case LightEvents.LightFlickerAndTurnOff:
-                light.GetComponent<FlickerControl>().flicker = true;
-                timer = flickerTimer;
-                triggered = true;
-                break;
+                    fControl.flicker = true;
+                    timer = flickerTimer;
+                    triggered = true;
+                    break;
             }
 
             if(timer <= 0) 
             {
                 gameObject.SetActive(false);
             }
-
-
         }
     }
 

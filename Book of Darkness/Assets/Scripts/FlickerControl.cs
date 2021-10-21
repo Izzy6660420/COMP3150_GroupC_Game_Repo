@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class FlickerControl : MonoBehaviour
 {
-    private Light2D light;
+    private Light2D sLight;
 
     [Range(0.0f, 10.0f)]
     public float MinimumTimeDelay, MaximumTimeDelay, MinimumLightIntensity, MaximumLightIntensity;
@@ -16,7 +16,7 @@ public class FlickerControl : MonoBehaviour
 
     void Start()
     {
-        light = gameObject.GetComponent<Light2D>();
+        sLight = GetComponent<Light2D>();
 
         timeDelay = Random.Range(MinimumTimeDelay, MaximumTimeDelay);
     }
@@ -33,8 +33,8 @@ public class FlickerControl : MonoBehaviour
 
         else
         {
-            light.enabled = !light.enabled;
-            light.intensity = Random.Range(MinimumLightIntensity, MaximumLightIntensity);
+            sLight.enabled = !sLight.enabled;
+            sLight.intensity = Random.Range(MinimumLightIntensity, MaximumLightIntensity);
 
             timeDelay = Random.Range(MinimumTimeDelay, MaximumTimeDelay);
         }

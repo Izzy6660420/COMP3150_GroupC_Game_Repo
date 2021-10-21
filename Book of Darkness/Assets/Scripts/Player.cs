@@ -9,11 +9,11 @@ public class Player : MonoBehaviour
 
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
 
-	public Rigidbody2D rigidbody;
+	public Rigidbody2D body;
 	[HideInInspector]
 	public bool facingRight, canEnter = true;
 	private Vector3 velocity = Vector3.zero;
-	private SpriteRenderer renderer;
+	private SpriteRenderer sRenderer;
 	private SpriteRenderer[] subsprites;
 
 	[HideInInspector]
@@ -39,8 +39,8 @@ public class Player : MonoBehaviour
 		}
 		instance = this;
 
-		rigidbody = GetComponent<Rigidbody2D>();
-		renderer = GetComponent<SpriteRenderer>();
+		body = GetComponent<Rigidbody2D>();
+		sRenderer = GetComponent<SpriteRenderer>();
 		subsprites = GetComponentsInChildren<SpriteRenderer>();
 		torch = GetComponent<Torch>();
 		scene = transform.parent.name;
@@ -56,6 +56,9 @@ public class Player : MonoBehaviour
 
 		torchBar = torchUI.gameObject;
 		panicBar = panicUI.gameObject;
+
+		torch.SetActive(false);
+		torchBar.SetActive(false);
 	}
 
 	public void Update()
@@ -83,12 +86,12 @@ public class Player : MonoBehaviour
 	public void Move(float move, bool jump) {
 
 		// Move the character by finding the target velocity
-		Vector3 targetVelocity = new Vector2(move * 10f, rigidbody.velocity.y);
+		Vector3 targetVelocity = new Vector2(move * 10f, body.velocity.y);
 		// Smooth it out and apply it to the player
-		rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref velocity, movementSmoothing);
+		body.velocity = Vector3.SmoothDamp(body.velocity, targetVelocity, ref velocity, movementSmoothing);
 
 		// Character direction by cursor position
-		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(rigidbody.position);
+		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(body.position);
 		if (dir.x > 0 && !facingRight)
 		{
 			Flip();
@@ -112,7 +115,7 @@ public class Player : MonoBehaviour
 
 	public void HidePlayer(bool hideBool)
     {
-		renderer.enabled = hideBool;
+		sRenderer.enabled = hideBool;
 		torch.SetActive(false);
 		torchBar.SetActive(false);
 		panicBar.SetActive(!hideBool);

@@ -6,22 +6,22 @@ using UnityEngine;
 public class Food : Interactable
 {
     public Item item;
-    SpriteRenderer renderer;
+    SpriteRenderer sRenderer;
     public event Action<Food> itemChosenEvent;
 
     void Start()
     {
-        renderer = gameObject.GetComponent<SpriteRenderer>();
+        sRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public override void Interact(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            if (renderer.enabled)
+            if (GetComponent<Renderer>().enabled)
             {
                 Inventory.instance.Add(item);
-                renderer.enabled = false;
+                sRenderer.enabled = false;
                 itemChosenEvent(this);
             }
             else
@@ -34,6 +34,6 @@ public class Food : Interactable
     public void Drop()
     {
         Inventory.instance.Remove(item);
-        renderer.enabled = true;
+        sRenderer.enabled = true;
     }
 }

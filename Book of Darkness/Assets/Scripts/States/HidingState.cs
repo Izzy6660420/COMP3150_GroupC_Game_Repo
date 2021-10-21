@@ -14,7 +14,7 @@ public class HidingState : PlayerState
     public void DoState(bool hide)
     {
         player.HidePlayer(true);
-        player.rigidbody.velocity = new Vector2(0, 0);
+        player.GetComponent<Rigidbody>().velocity = new Vector2(0, 0);
     }
 
     public void ChangeState(PlayerState state)
