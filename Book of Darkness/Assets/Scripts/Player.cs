@@ -9,11 +9,11 @@ public class Player : MonoBehaviour
 
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
 
-	new public Rigidbody2D rigidbody;
+	public Rigidbody2D rigidbody;
 	[HideInInspector]
 	public bool facingRight, canEnter = true;
 	private Vector3 velocity = Vector3.zero;
-	new private SpriteRenderer renderer;
+	private SpriteRenderer renderer;
 	private SpriteRenderer[] subsprites;
 
 	[HideInInspector]

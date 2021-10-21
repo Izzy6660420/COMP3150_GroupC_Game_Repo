@@ -6,7 +6,7 @@ using UnityEngine;
 public class Food : Interactable
 {
     public Item item;
-    new SpriteRenderer renderer;
+    SpriteRenderer renderer;
     public event Action<Food> itemChosenEvent;
 
     void Start()

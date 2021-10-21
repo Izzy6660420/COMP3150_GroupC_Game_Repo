@@ -112,10 +112,4 @@ public class EnemyAI : MonoBehaviour
         }
         return closestPoint;
     }
-
-    void OnDrawGizmos()
-    {
-        foreach (Transform point in patrolPoints)
-            Handles.DrawWireDisc(point.position, new Vector3(0, 0, 1), nextDst);
-    }
 }

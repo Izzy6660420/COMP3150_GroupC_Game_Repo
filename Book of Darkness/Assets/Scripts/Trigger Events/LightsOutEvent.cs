@@ -16,7 +16,7 @@ public class LightsOutEvent : TriggerEvents
 
     [SerializeField]
     public LightEvents lightEvents;
-    new public Light2D light;
+    public Light2D light;
     public float flickerTimer;
 
     private float timer;

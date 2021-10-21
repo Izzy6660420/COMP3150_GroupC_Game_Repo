@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class FlickerControl : MonoBehaviour
 {
-    new private Light2D light;
+    private Light2D light;
 
     [Range(0.0f, 10.0f)]
     public float MinimumTimeDelay, MaximumTimeDelay, MinimumLightIntensity, MaximumLightIntensity;
