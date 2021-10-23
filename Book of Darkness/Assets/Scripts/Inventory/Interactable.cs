@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
         if (tooltip == null)
             return;
         animator = tooltip.GetComponent<Animator>();
-        tooltipTimer = animator.runtimeAnimatorController.animationClips[0].length; // NOT WORKING, NEED TO FIND METHOD TO RETRIEVE ANIMATION LENGTH
+        //tooltipTimer = animator.runtimeAnimatorController.animationClips[0].length; // NOT WORKING, NEED TO FIND METHOD TO RETRIEVE ANIMATION LENGTH
     }
 
     void OnTriggerEnter2D(Collider2D col)

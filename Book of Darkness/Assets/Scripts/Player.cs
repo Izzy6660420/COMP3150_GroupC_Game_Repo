@@ -102,6 +102,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public void StopMovement()
+    {
+		body.velocity = Vector2.zero;
+    }
+
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.

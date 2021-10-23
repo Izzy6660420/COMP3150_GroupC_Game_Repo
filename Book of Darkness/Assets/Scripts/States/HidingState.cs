@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HidingState : PlayerState
 {
-
     Player player;
     public HidingState(Player cont)
     {
@@ -14,7 +13,7 @@ public class HidingState : PlayerState
     public void DoState(bool hide)
     {
         player.HidePlayer(true);
-        player.GetComponent<Rigidbody>().velocity = new Vector2(0, 0);
+        player.StopMovement();
     }
 
     public void ChangeState(PlayerState state)

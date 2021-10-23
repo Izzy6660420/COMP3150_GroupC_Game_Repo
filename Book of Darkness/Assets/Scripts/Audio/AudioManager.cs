@@ -7,8 +7,8 @@ public class AudioManager : MonoBehaviour
     public enum AudioChannel { Master, Sfx, Bgm };
 
     float masterPercent = 1;
-    float sfxPercent = 1;
-    float bgmPercent = 1;
+    float sfxPercent = 2;
+    float bgmPercent = .3f;
 
     AudioSource[] musicSources;
     int activeMusicSourceIndex;
