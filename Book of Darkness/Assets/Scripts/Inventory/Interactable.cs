@@ -40,9 +40,8 @@ public class Interactable : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            hasInteracted = false;
+            SetInteracted(false);
         }
-            
     }
 
     public void SetInteracted(bool b)
