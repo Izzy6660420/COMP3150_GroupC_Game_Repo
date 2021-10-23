@@ -110,14 +110,21 @@ public class AudioManager : MonoBehaviour
     }
 
     // Override method for pitch control
-    GameObject PlayClipAtPoint(AudioClip clip, Vector3 position, float volume, float pitch)
+    public AudioSource PlayClipAtPoint(AudioClip clip, Vector3 position, float volume, float pitch, bool loop = false)
     {
         GameObject obj = new GameObject();
         obj.transform.position = position;
-        obj.AddComponent<AudioSource>();
-        obj.GetComponent<AudioSource>().pitch = pitch;
-        obj.GetComponent<AudioSource>().PlayOneShot(clip, volume);
-        Destroy(obj, clip.length / pitch);
-        return obj;
+        var audioSrc = obj.AddComponent<AudioSource>();
+        audioSrc.pitch = pitch;
+        audioSrc.PlayOneShot(clip, volume);
+        if (loop)
+        {
+            audioSrc.loop = true;
+        }
+        else
+        {
+            Destroy(obj, clip.length / pitch);
+        }
+        return audioSrc;
     }
 }
