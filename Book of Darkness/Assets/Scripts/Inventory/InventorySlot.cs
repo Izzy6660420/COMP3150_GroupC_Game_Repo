@@ -9,9 +9,11 @@ public class InventorySlot : MonoBehaviour
     public void AddItem(Item newItem)
     {
         item = newItem;
-        icon.sprite = item.icon;
-        icon.enabled = true;
-        Debug.Log("Added item " + item.name);
+        if (item.icon)
+        {
+            icon.sprite = item.icon;
+            icon.enabled = true;
+        }
     }
 
     public void ClearSlot()

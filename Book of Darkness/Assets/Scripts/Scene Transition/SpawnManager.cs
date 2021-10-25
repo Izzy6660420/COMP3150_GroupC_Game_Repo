@@ -28,7 +28,6 @@ public class SpawnManager : MonoBehaviour
 
         previousScene = sceneNames[1];
         currentScene = sceneNames[0];
-        Debug.Log("Warped to: " + currentScene);
 
         player.position = destination.position;
         Player.instance.ChangeScene(currentScene);

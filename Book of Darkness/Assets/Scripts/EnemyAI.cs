@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     bool onPath = false;
     float forgetTimer = 3f;
     public GameObject shadow;
+    public SpriteRenderer sprite;
 
     void Start()
     {
@@ -61,8 +62,7 @@ public class EnemyAI : MonoBehaviour
             forgetTimer -= Time.fixedDeltaTime;
             if (forgetTimer <= 0)
             {
-                target = GetClosestPatrolPoint(false, target);
-                onPath = true;
+                StartCoroutine(Fade());
             }
         }
 
@@ -111,5 +111,19 @@ public class EnemyAI : MonoBehaviour
             }
         }
         return closestPoint;
+    }
+
+    IEnumerator Fade()
+    {
+        var percent = 0f;
+        var initColor = sprite.color;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+            sprite.color = Color.Lerp(initColor, Color.clear, percent);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }

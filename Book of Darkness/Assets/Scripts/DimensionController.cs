@@ -75,7 +75,6 @@ public class DimensionController : MonoBehaviour
             mainCamera = nightmare;
             dimensionStr = nightmareStr;
         }
-        Debug.Log("Dimension Switched");
         DimensionSwitchEvent?.Invoke();
     }
 

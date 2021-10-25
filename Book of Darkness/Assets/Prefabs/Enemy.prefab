@@ -119,6 +119,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   shadow: {fileID: 9217428937570104124}
+  sprite: {fileID: 7791340871724327707}
 --- !u!114 &5256865235380479615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,4 +421,4 @@ MonoBehaviour:
   - {x: -0.99931335, y: -0.95704746, z: 0}
   m_ShapePathHash: 1544982267
   m_Mesh: {fileID: 0}
-  m_InstanceId: 23346
+  m_InstanceId: 31302
