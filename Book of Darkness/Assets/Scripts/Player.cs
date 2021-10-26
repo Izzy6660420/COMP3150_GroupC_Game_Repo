@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
+	public event Action GameOverEvent;
+	public event Action RespawnEvent;
 
 	public bool canHide = false;
 	public PlayerState currentState;
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
 	string startingScene;
 
 	float health = 3f;
+	float initialHealth = 3f;
 
 	Animator anim;
 
@@ -55,6 +59,7 @@ public class Player : MonoBehaviour
 
 		startingPos = transform.position;
 		startingScene = scene;
+		initialHealth = health;
 	}
 
 	private void Start() 
@@ -103,7 +108,7 @@ public class Player : MonoBehaviour
 
 	public void PlayFootstep()
     {
-		var pitch = Random.Range(1f, 1.6f);
+		var pitch = UnityEngine.Random.Range(1f, 1.6f);
 		AudioManager.instance.PlayClipAtPoint("Footstep", transform.position, 0.3f, pitch);
     }
 
@@ -182,7 +187,9 @@ public class Player : MonoBehaviour
 		scene = startingScene;
 		torch.SetActive(false);
 
+		GameOverEvent?.Invoke();
 		StartCoroutine(FadeScreen());
+		health = initialHealth;
     }
 
 	IEnumerator FadeScreen()
@@ -197,5 +204,8 @@ public class Player : MonoBehaviour
 			screen.color = Color.Lerp(initColor, Color.clear, percent);
 			yield return null;
 		}
+
+		yield return new WaitForSeconds(1.5f);
+		RespawnEvent?.Invoke();
 	}
 }
