@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
 
 	public void TakeHit(float damage)
     {
-		if (invincible) return;
+		if (invincible || IsHiding()) return;
 
 		health -= damage;
 		StartCoroutine(SetInvincible());
@@ -187,6 +187,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator FadeScreen()
     {
+		yield return new WaitForSeconds(0.5f);
 		var percent = 0f;
 		var initColor = screen.color;
 
