@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945632082918825051}
   - component: {fileID: 2945632082918825028}
+  - component: {fileID: 4368822760814824849}
   m_Layer: 0
   m_Name: Chair Right
   m_TagString: Untagged
@@ -82,3 +83,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4368822760814824849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945632082918825050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 0000000051ad0c7b6926dbb673f0a134e31eca497b59cf54b79fc882e7ea456f
+  m_ShapePath:
+  - {x: -0.54166675, y: -0.9826656, z: 0}
+  - {x: 0.5067926, y: -0.9852511, z: 0}
+  - {x: 0.5051838, y: -0.37588286, z: 0}
+  - {x: 0.5423832, y: -0.37588286, z: 0}
+  - {x: 0.5416667, y: -0.16430703, z: 0}
+  - {x: -0.36945546, y: -0.16356528, z: 0}
+  - {x: -0.37581372, y: 0.95736235, z: 0}
+  - {x: -0.41510785, y: 0.95926124, z: 0}
+  - {x: -0.41681623, y: 1.0010237, z: 0}
+  - {x: -0.49882126, y: 1.0029225, z: 0}
+  - {x: -0.49540436, y: 0.9573666, z: 0}
+  - {x: -0.53995836, y: 0.9588501, z: 0}
+  m_ShapePathHash: 1205546945
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -137232
