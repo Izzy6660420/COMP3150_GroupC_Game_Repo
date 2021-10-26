@@ -26,12 +26,11 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
-        sprite.color = Color.clear;
     }
 
     void OnAwake()
     {
-        StartCoroutine(Fade(Color.white));
+        //StartCoroutine(Fade(Color.white));
     }
 
     void Update()
@@ -68,7 +67,7 @@ public class EnemyAI : MonoBehaviour
             forgetTimer -= Time.fixedDeltaTime;
             if (forgetTimer <= 0)
             {
-                StartCoroutine(Fade(Color.clear));
+                StartCoroutine(Fade(Color.clear, true));
             }
         }
 
@@ -115,7 +114,7 @@ public class EnemyAI : MonoBehaviour
         stunned = false;
     }
 
-    IEnumerator Fade(Color c)
+    IEnumerator Fade(Color c, bool kill = false)
     {
         var percent = 0f;
         var initColor = sprite.color;
@@ -126,6 +125,6 @@ public class EnemyAI : MonoBehaviour
             sprite.color = Color.Lerp(initColor, c, percent);
             yield return null;
         }
-        Destroy(gameObject);
+        if (kill) Destroy(gameObject);
     }
 }
