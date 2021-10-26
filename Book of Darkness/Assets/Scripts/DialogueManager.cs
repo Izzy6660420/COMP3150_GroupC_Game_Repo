@@ -52,7 +52,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(DisplayText(temp));
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
     }

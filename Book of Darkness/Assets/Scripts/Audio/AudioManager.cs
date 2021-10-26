@@ -29,7 +29,6 @@ public class AudioManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
 
         audioListener = FindObjectOfType<AudioListener>().transform;
         player = FindObjectOfType<Player>().transform;
