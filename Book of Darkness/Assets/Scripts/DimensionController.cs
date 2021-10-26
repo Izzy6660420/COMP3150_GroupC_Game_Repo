@@ -9,7 +9,6 @@ public class DimensionController : MonoBehaviour
     static private Camera mainCamera;
     public Camera nightmare;
     public Camera darkness;
-    public GameObject globalLight;
 
     private PanicUI panicBar;
     private float panic = 0.0f;
@@ -63,7 +62,6 @@ public class DimensionController : MonoBehaviour
         {
             nightmare.enabled = false;
             darkness.enabled = true;
-            globalLight.SetActive(true);
             mainCamera = darkness;
             dimensionStr = darknessStr;
         }
@@ -71,7 +69,6 @@ public class DimensionController : MonoBehaviour
         {
             nightmare.enabled = true;
             darkness.enabled = false;
-            globalLight.SetActive(false);
             mainCamera = nightmare;
             dimensionStr = nightmareStr;
         }
@@ -86,5 +83,15 @@ public class DimensionController : MonoBehaviour
     public string dimensionInf()
     {
         return dimensionStr;
+    }
+
+    public float currentPanic()
+    {
+        return panic;
+    }
+
+    public float maxPanicVal()
+    {
+        return maxPanic;
     }
 }
