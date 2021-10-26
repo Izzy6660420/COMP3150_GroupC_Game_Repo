@@ -1,5 +1,4 @@
-//From https://github.com/Brackeys/2D-Character-Controller
-
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,10 +25,17 @@ public class Player : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	private bool canHide = false;
+	public bool canHide = false;
 	public PlayerState currentState;
 	public PlayerState ExposedState,HidingState;
 	public string scene;
+
+	public SpriteRenderer screen;
+	bool invincible = false;
+	Vector3 startingPos;
+	string startingScene;
+
+	float health = 3f;
 
 	private void Awake()
 	{
@@ -44,6 +50,9 @@ public class Player : MonoBehaviour
 		subsprites = GetComponentsInChildren<SpriteRenderer>();
 		torch = GetComponent<Torch>();
 		scene = transform.parent.name;
+
+		startingPos = transform.position;
+		startingScene = scene;
 	}
 
 	private void Start() 
@@ -66,22 +75,6 @@ public class Player : MonoBehaviour
 		torchUI.SetCamera(DimensionController.Instance.MainCam());
 		panicUI.SetCamera(DimensionController.Instance.MainCam());
     }
-
-	void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.gameObject.CompareTag("Hideable"))
-        {
-			canHide = true;
-		}
-	}
-	
-	void OnTriggerExit2D(Collider2D col)
-	{
-		if (col.gameObject.CompareTag("Hideable"))
-		{
-			canHide = false;
-		}
-	}
 
 	public void Move(float move, bool jump) {
 
@@ -150,4 +143,45 @@ public class Player : MonoBehaviour
     {
 		return (currentState == HidingState);
     }
+
+	public void TakeHit(float damage)
+    {
+		if (invincible) return;
+
+		health -= damage;
+		StartCoroutine(SetInvincible());
+
+		if (health <= 0)
+			GameOver();
+    }
+
+	public IEnumerator SetInvincible()
+    {
+		invincible = true;
+		yield return new WaitForSeconds(1);
+		invincible = false;
+    }
+
+	void GameOver()
+    {
+		screen.color = Color.black;
+		transform.position = startingPos;
+		scene = startingScene;
+		torch.SetActive(false);
+
+		StartCoroutine(FadeScreen());
+    }
+
+	IEnumerator FadeScreen()
+    {
+		var percent = 0f;
+		var initColor = screen.color;
+
+		while (percent < 1)
+		{
+			percent += Time.deltaTime;
+			screen.color = Color.Lerp(initColor, Color.clear, percent);
+			yield return null;
+		}
+	}
 }
