@@ -26,12 +26,6 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
-        sprite.color = Color.clear;
-    }
-
-    void OnAwake()
-    {
-        StartCoroutine(Fade(Color.white));
     }
 
     void Update()
@@ -68,7 +62,7 @@ public class EnemyAI : MonoBehaviour
             forgetTimer -= Time.fixedDeltaTime;
             if (forgetTimer <= 0)
             {
-                StartCoroutine(Fade(Color.clear));
+                StartCoroutine(Fade());
             }
         }
 
@@ -86,6 +80,17 @@ public class EnemyAI : MonoBehaviour
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
             fov.FlipFOV("Left");
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Torch"))
+            stunned = true;
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Torch"))
+            stunned = false;
     }
 
     Transform GetClosestPatrolPoint(bool chasePlayer, Transform currentPoint = null)
@@ -108,14 +113,7 @@ public class EnemyAI : MonoBehaviour
         return closestPoint;
     }
 
-    public IEnumerator Stun(float t)
-    {
-        stunned = true;
-        yield return new WaitForSeconds(t);
-        stunned = false;
-    }
-
-    IEnumerator Fade(Color c)
+    IEnumerator Fade()
     {
         var percent = 0f;
         var initColor = sprite.color;
@@ -123,7 +121,7 @@ public class EnemyAI : MonoBehaviour
         while (percent < 1)
         {
             percent += Time.deltaTime;
-            sprite.color = Color.Lerp(initColor, c, percent);
+            sprite.color = Color.Lerp(initColor, Color.clear, percent);
             yield return null;
         }
         Destroy(gameObject);
