@@ -88,17 +88,6 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Torch"))
-            stunned = true;
-    }
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Torch"))
-            stunned = false;
-    }
-
     Transform GetClosestPatrolPoint(bool chasePlayer, Transform currentPoint = null)
     {
         if (chasePlayer)
@@ -117,6 +106,13 @@ public class EnemyAI : MonoBehaviour
             }
         }
         return closestPoint;
+    }
+
+    public IEnumerator Stun(float t)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(t);
+        stunned = false;
     }
 
     IEnumerator Fade(Color c)
