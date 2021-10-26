@@ -17,15 +17,19 @@ public class Torch : MonoBehaviour
     private float minPower = 0.0f;
     public float powerDrain = 1.0f;
     public AudioClip buttonClickSfx;
+    float defaultIntensity;
 
     private TorchUI torchBar;
     private bool usable = true;
+
+    List<EnemyAI> enemiesInLight = new List<EnemyAI>();
 
     void Start()
     {
         torchBar = TorchUI.instance;
         torchBar.SetBatteryCeiling(maxPower, minPower);
         player = Player.instance;
+        defaultIntensity = torchLight.intensity;
     }
 
     void Update()
@@ -53,6 +57,16 @@ public class Torch : MonoBehaviour
             power = maxPower;
         }
 
+        if (Input.GetMouseButtonDown(2) && torchLight.enabled)
+        {
+            power /= 2;
+            torchLight.intensity = 5f;
+            StartCoroutine(Fade());
+            foreach (var enemy in enemiesInLight)
+                StartCoroutine(enemy.Stun(2f));
+
+        }
+
         if (power < minPower)
         {
             power = minPower;
@@ -61,12 +75,19 @@ public class Torch : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemies"))
+            enemiesInLight.Add(col.gameObject.GetComponent<EnemyAI>());
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemies"))
+            enemiesInLight.Remove(col.gameObject.GetComponent<EnemyAI>());
+    }
+
     public void SetActive(bool b)
     {
-        // Item check for torch in inventory
-        //if (!Inventory.instance.hasItem("Torch"))
-        //    return;
-
         torchLight.enabled = b;
         torchLightBG.enabled = b;
         polyCol.enabled = b;
@@ -82,5 +103,14 @@ public class Torch : MonoBehaviour
     public bool usableBool()
     {
         return usable;
+    }
+
+    IEnumerator Fade()
+    {
+        while (torchLight.intensity > defaultIntensity)
+        {
+            torchLight.intensity -= Time.deltaTime * 20;
+            yield return null;
+        }
     }
 }
