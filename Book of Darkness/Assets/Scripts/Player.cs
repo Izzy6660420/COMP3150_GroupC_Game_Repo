@@ -103,7 +103,8 @@ public class Player : MonoBehaviour
 
 	public void PlayFootstep()
     {
-		AudioManager.instance.PlaySound("Footstep", transform.position);
+		var pitch = Random.Range(1f, 1.6f);
+		AudioManager.instance.PlayClipAtPoint("Footstep", transform.position, 0.3f, pitch);
     }
 
 	public void StopMovement()
