@@ -36,6 +36,7 @@ public class Torch : MonoBehaviour
     {
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (mPos - (Vector2)arm.position).normalized;
+        usable = true;
 
         if (player.facingRight)
         {
@@ -57,6 +58,13 @@ public class Torch : MonoBehaviour
             power = maxPower;
         }
 
+        if (power < minPower)
+        {
+            power = minPower;
+            SetActive(false);
+            usable = false;
+        }
+
         if (Input.GetMouseButtonDown(2) && torchLight.enabled)
         {
             power /= 2;
@@ -64,14 +72,6 @@ public class Torch : MonoBehaviour
             StartCoroutine(Fade());
             foreach (var enemy in enemiesInLight)
                 StartCoroutine(enemy.Stun(2f));
-
-        }
-
-        if (power < minPower)
-        {
-            power = minPower;
-            SetActive(false);
-            usable = false;
         }
     }
 
