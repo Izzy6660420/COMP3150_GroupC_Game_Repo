@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
     bool hiding = false;
-    public float runSpeed = 40f;
 
     void Start()
     {

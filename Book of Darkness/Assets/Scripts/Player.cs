@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
 	float health = 3f;
 
+	Animator anim;
+
 	private void Awake()
 	{
 		if (instance != null)
@@ -68,6 +70,8 @@ public class Player : MonoBehaviour
 
 		torch.SetActive(false);
 		torchBar.SetActive(false);
+
+		anim = GetComponent<Animator>();
 	}
 
 	public void Update()
@@ -77,6 +81,8 @@ public class Player : MonoBehaviour
     }
 
 	public void Move(float move, bool jump) {
+
+		anim.SetFloat("Speed", Mathf.Abs(move));
 
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity = new Vector2(move * 10f, body.velocity.y);
@@ -94,6 +100,11 @@ public class Player : MonoBehaviour
 			Flip();
 		}
 	}
+
+	public void PlayFootstep()
+    {
+		AudioManager.instance.PlaySound("Footstep", transform.position);
+    }
 
 	public void StopMovement()
     {

@@ -6,7 +6,7 @@ public class ExposedState : PlayerState
 {
     Player player;
     float hMove = 0f;
-    public float runSpeed = 40f;
+    public float runSpeed = 30f;
 
     public ExposedState(Player cont)
     {
