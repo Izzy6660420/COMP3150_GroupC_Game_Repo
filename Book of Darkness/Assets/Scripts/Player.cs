@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 	public string scene;
 
 	public SpriteRenderer screen;
-	bool invincible = false;
+	public bool invincible = false;
 	Vector3 startingPos;
 	string startingScene;
 

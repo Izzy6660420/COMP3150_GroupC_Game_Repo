@@ -6,7 +6,7 @@ public class EnemyCollision : MonoBehaviour
 {
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Enemies"))
+        if (col.gameObject.CompareTag("Enemies") && !Player.instance.invincible)
         {
             Player.instance.TakeHit(1);
         }
