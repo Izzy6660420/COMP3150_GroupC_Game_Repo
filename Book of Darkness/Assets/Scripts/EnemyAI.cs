@@ -26,6 +26,12 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
+        sprite.color = Color.clear;
+    }
+
+    void OnAwake()
+    {
+        StartCoroutine(Fade(Color.white));
     }
 
     void Update()
@@ -62,7 +68,7 @@ public class EnemyAI : MonoBehaviour
             forgetTimer -= Time.fixedDeltaTime;
             if (forgetTimer <= 0)
             {
-                StartCoroutine(Fade());
+                StartCoroutine(Fade(Color.clear));
             }
         }
 
@@ -113,7 +119,7 @@ public class EnemyAI : MonoBehaviour
         return closestPoint;
     }
 
-    IEnumerator Fade()
+    IEnumerator Fade(Color c)
     {
         var percent = 0f;
         var initColor = sprite.color;
@@ -121,7 +127,7 @@ public class EnemyAI : MonoBehaviour
         while (percent < 1)
         {
             percent += Time.deltaTime;
-            sprite.color = Color.Lerp(initColor, Color.clear, percent);
+            sprite.color = Color.Lerp(initColor, c, percent);
             yield return null;
         }
         Destroy(gameObject);
