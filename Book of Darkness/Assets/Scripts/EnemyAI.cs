@@ -127,13 +127,4 @@ public class EnemyAI : MonoBehaviour
         }
         if (kill) Destroy(gameObject);
     }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            Player.instance.TakeHit(1);
-            Debug.Log("HIT TAKEN");
-        }
-    }
 }

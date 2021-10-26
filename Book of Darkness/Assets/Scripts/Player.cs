@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
 
 		health -= damage;
 		StartCoroutine(SetInvincible());
+		Debug.Log("HIT TAKEN");
 
 		if (health <= 0)
 			GameOver();
