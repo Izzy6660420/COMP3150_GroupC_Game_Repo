@@ -117,7 +117,7 @@ public class AudioManager : MonoBehaviour
         obj.transform.position = position;
         var audioSrc = obj.AddComponent<AudioSource>();
         audioSrc.pitch = pitch;
-        audioSrc.PlayOneShot(clip, volume);
+        
         if (loop)
         {
             audioSrc.loop = true;
@@ -126,6 +126,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(obj, clip.length / pitch);
         }
+        audioSrc.PlayOneShot(clip, volume);
         return audioSrc;
     }
 
