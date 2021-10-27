@@ -4,8 +4,6 @@ using UnityEngine;
 
 public interface PlayerState
 {
-    // Start is called before the first frame update
-    void DoState(bool stateInform);
+    void DoState();
     void ChangeState(PlayerState state);
-    string NameToString();
 }

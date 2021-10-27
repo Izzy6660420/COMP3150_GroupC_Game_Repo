@@ -50,7 +50,7 @@ public class NPC : Interactable
             i = 0;
         }
 
-        if (recievedItem)
+        if (recievedItem && moved)
             i = 4;
         Talk(dialogues[i]);
     }

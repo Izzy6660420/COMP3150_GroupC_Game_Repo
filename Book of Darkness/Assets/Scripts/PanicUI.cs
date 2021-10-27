@@ -1,46 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PanicUI : MonoBehaviour
 {
-    public static PanicUI instance;
-    void Awake()
+    Animator anim;
+    PlayerPanic panic;
+
+    void Start()
     {
-        if (instance != null)
-        {
-            Debug.Log("More than one instance of PanicUI detected!");
-        }
-        instance = this;
+        panic = PlayerPanic.instance;
+        anim = GetComponent<Animator>();
+        anim.speed = 0f;
     }
 
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
-    private Camera uiCam;
-    
-    public void SetPanicCeiling(float max, float min)
+    void Update()
     {
-        slider.maxValue = max/100.0f;
-        slider.minValue = min/100.0f;
-        
-        fill.color = gradient.Evaluate(1f);
+        UpdateMeter(panic.GetPercent());
     }
 
-    public void SetPanic(float power)
+    void UpdateMeter(float p)
     {
-        slider.value = power/100.0f;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
-    }
-
-    public void SetCamera(Camera cam)
-    {
-        uiCam = cam;
-    }
-
-    public void Hide(bool b)
-    {
-
+        var n = Mathf.Clamp(p - 0.01f, 0f, 1f);
+        anim.Play("PanicMeter", 0, n);
     }
 }

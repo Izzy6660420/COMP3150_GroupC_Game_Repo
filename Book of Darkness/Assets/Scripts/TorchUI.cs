@@ -1,46 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TorchUI : MonoBehaviour
 {
-    public static TorchUI instance;
-    void Awake()
+    Animator anim;
+    PlayerTorch torch;
+
+    void Start()
     {
-        if (instance != null)
-        {
-            Debug.Log("More than one instance of TorchUI detected!");
-        }
-        instance = this;
+        torch = PlayerTorch.instance;
+        anim = GetComponent<Animator>();
+        anim.speed = 0f;
     }
 
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
-    private Camera uiCam;
-    
-    public void SetBatteryCeiling(float maxPow, float minPow)
+    void Update()
     {
-        slider.maxValue = maxPow/100.0f;
-        slider.minValue = minPow/100.0f;
-        
-        fill.color = gradient.Evaluate(1f);
+        UpdateMeter(torch.GetPercent());
     }
 
-    public void SetBattery(float power)
+    void UpdateMeter(float p)
     {
-        slider.value = power/100.0f;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
-    }
-
-    public void SetCamera(Camera cam)
-    {
-        uiCam = cam;
-    }
-
-    public void Hide(bool b)
-    {
-
+        var n = Mathf.Clamp(p - 0.01f, 0f, 1f);
+        anim.Play("BatteryMeter", 0, n);
     }
 }

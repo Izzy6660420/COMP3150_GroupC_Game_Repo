@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         shadow.SetActive(true);
-        if (DimensionController.instance.dimensionInf() == "nightmare")
+        if (DimensionController.instance.dimensionStr == "nightmare")
             shadow.SetActive(false);
     }
 

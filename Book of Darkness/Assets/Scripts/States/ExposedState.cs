@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExposedState : PlayerState
@@ -13,20 +11,14 @@ public class ExposedState : PlayerState
         player = cont;
     }
 
-    public void DoState(bool jump)
+    public void DoState()
     {
         hMove = Input.GetAxisRaw(InputAxes.Horizontal) * runSpeed;
-        player.Move(hMove * Time.fixedDeltaTime, jump);
-        jump = false;
+        player.Move(hMove * Time.fixedDeltaTime);
     }
 
     public void ChangeState(PlayerState state)
     {
         player.currentState = state;
-    }
-
-    public string NameToString()
-    {
-        return "Exposed State";
     }
 }

@@ -10,15 +10,9 @@ public class DimensionController : MonoBehaviour
     public Camera nightmare;
     public Camera darkness;
 
-    private PanicUI panicBar;
-    private float panic = 0.0f;
-    private float maxPanic = 10.0f;
-    private float minPanic = 0.0f;
-    public float panicGain = 1.0f;
-
     public const string nightmareStr = "nightmare";
     public const string darknessStr = "darkness";
-    private string dimensionStr;
+    public string dimensionStr;
 
     public event Action DimensionSwitchEvent;
 
@@ -41,17 +35,6 @@ public class DimensionController : MonoBehaviour
     void Start()
     {
         dimensionStr = nightmareStr;
-        panicBar = PanicUI.instance;
-        panicBar.SetPanicCeiling(maxPanic, minPanic);
-    }
-
-    void Update()
-    {
-        if (darkness.enabled)
-        {
-            panic += Time.deltaTime * panicGain;
-            panicBar.SetPanic(panic);
-        }
     }
 
     public void CameraSwitch()
@@ -78,20 +61,5 @@ public class DimensionController : MonoBehaviour
     public Camera MainCam()
     {
         return mainCamera;
-    }
-
-    public string dimensionInf()
-    {
-        return dimensionStr;
-    }
-
-    public float currentPanic()
-    {
-        return panic;
-    }
-
-    public float maxPanicVal()
-    {
-        return maxPanic;
     }
 }

@@ -10,7 +10,7 @@ public class HidingState : PlayerState
         player = cont;
     }
 
-    public void DoState(bool hide)
+    public void DoState()
     {
         player.HidePlayer(true);
         player.StopMovement();
@@ -21,10 +21,4 @@ public class HidingState : PlayerState
         player.HidePlayer(false);
         player.currentState = state;
     }
-
-    public string NameToString()
-    {
-        return "Hidng State";
-    }
-
 }
