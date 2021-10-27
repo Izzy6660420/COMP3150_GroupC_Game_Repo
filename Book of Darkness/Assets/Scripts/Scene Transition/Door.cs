@@ -24,6 +24,7 @@ public class Door : Interactable
 
         player.canEnter = false;
         SpawnManager.instance.Warp(destination);
+        AudioManager.instance.PlaySound("Door", transform.position, 0.3f);
     }
 
     void OnTriggerExit2D(Collider2D other)
