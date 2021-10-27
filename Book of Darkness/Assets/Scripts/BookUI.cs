@@ -8,6 +8,7 @@ public class BookUI : MonoBehaviour
     DimensionController dimension;
     Animator animator;
     Image sprite;
+    public Image hotkey;
 
     void Start()
     {
@@ -20,8 +21,12 @@ public class BookUI : MonoBehaviour
     void Update()
     {
         sprite.enabled = false;
+        hotkey.enabled = false;
         if (Inventory.instance.HasItem("Book"))
+        {
             sprite.enabled = true;
+            hotkey.enabled = true;
+        }
     }
 
     void Transition()
