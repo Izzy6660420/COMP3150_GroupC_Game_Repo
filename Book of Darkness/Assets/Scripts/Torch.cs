@@ -59,8 +59,7 @@ public class Torch : MonoBehaviour
 
         if (Input.GetMouseButtonDown(2) && torchLight.enabled)
         {
-            power /= 2;
-            torchLight.intensity = 5f;
+            
             StartCoroutine(Fade());
             foreach (var enemy in enemiesInLight)
                 StartCoroutine(enemy.Stun(2f));
@@ -107,6 +106,13 @@ public class Torch : MonoBehaviour
 
     IEnumerator Fade()
     {
+        AudioManager.instance.PlaySound("Flash", transform.position, 0.3f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        power /= 2;
+        torchLight.intensity = 5f;
+
         while (torchLight.intensity > defaultIntensity)
         {
             torchLight.intensity -= Time.deltaTime * 20;
