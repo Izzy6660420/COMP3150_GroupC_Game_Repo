@@ -94,9 +94,11 @@ public class Torch : MonoBehaviour
         AudioManager.instance.PlaySound(buttonClickSfx, transform.position);
     }
 
-    public void AddPower(float percent)
+    public float AddPower(float n)
     {
-        power += maxPower * percent;
+        power += n;
+        if (power > 0) usable = true;
+        return power;
     }
 
     public bool usableBool()
