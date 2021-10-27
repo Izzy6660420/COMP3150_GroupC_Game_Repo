@@ -53,12 +53,6 @@ public class BearNPC : NPC
         Talk(dialogues[i]);
     }
 
-    void Talk(Dialogue dialogue)
-    {
-        DialogueManager.instance.StartDialogue(dialogue);
-        talkedTo = true;
-    }
-
     IEnumerator Move()
     {
         float step = 10 * Time.deltaTime;
