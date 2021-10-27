@@ -121,32 +121,24 @@ public class AudioManager : MonoBehaviour
         if (loop)
         {
             audioSrc.loop = true;
+            audioSrc.volume = volume;
+            audioSrc.clip = clip;
+            audioSrc.Play();
         }
         else
         {
+            audioSrc.PlayOneShot(clip, volume);
             Destroy(obj, clip.length / pitch);
         }
-        audioSrc.PlayOneShot(clip, volume);
+
         return audioSrc;
     }
 
     public AudioSource PlayClipAtPoint(string name, Vector3 position, float volume, float pitch, bool loop = false)
     {
         var clip = library.GetClip(name);
+        var audioSrc = PlayClipAtPoint(clip, position, volume, pitch, loop);
 
-        GameObject obj = new GameObject();
-        obj.transform.position = position;
-        var audioSrc = obj.AddComponent<AudioSource>();
-        audioSrc.pitch = pitch;
-        audioSrc.PlayOneShot(clip, volume);
-        if (loop)
-        {
-            audioSrc.loop = true;
-        }
-        else
-        {
-            Destroy(obj, clip.length / pitch);
-        }
         return audioSrc;
     }
 }
