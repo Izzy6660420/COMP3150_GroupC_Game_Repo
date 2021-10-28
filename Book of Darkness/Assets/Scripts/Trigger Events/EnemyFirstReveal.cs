@@ -4,21 +4,8 @@ using UnityEngine;
 
 public class EnemyFirstReveal : CustomizedMajorEvent
 {
-
     [SerializeField]
     public GameObject eventSystem, monster, teddyBear, rippedUpTeddy;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override IEnumerator customEvent()
     {    
@@ -26,16 +13,18 @@ public class EnemyFirstReveal : CustomizedMajorEvent
         monster.SetActive(true);
         teddyBear.SetActive(false);
         rippedUpTeddy.SetActive(true);
-        yield return new WaitForSeconds(2);
-        DimensionController.instance.CameraSwitch();
+
         yield return new WaitForSeconds(1);
 
-        DimensionController.instance.CameraSwitch();
         monster.GetComponent<EnemyAI>().enabled = true;
+        DimensionController.instance.CameraSwitch();
 
+        yield return new WaitForSeconds(0.5f);
+
+        DimensionController.instance.CameraSwitch();
+        
         eventSystem.SetActive(true);
         gameObject.SetActive(false);
-
     }
 
     public override void triggerEvent()
