@@ -9,6 +9,7 @@ public class BookUI : MonoBehaviour
     Animator animator;
     Image sprite;
     public Image hotkey;
+    public Image meter;
 
     void Start()
     {
@@ -22,10 +23,12 @@ public class BookUI : MonoBehaviour
     {
         sprite.enabled = false;
         hotkey.enabled = false;
+        meter.enabled = false;
         if (Inventory.instance.HasItem("Book"))
         {
             sprite.enabled = true;
             hotkey.enabled = true;
+            meter.enabled = false;
         }
     }
 
