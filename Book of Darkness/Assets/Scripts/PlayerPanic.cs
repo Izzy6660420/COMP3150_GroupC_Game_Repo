@@ -29,10 +29,23 @@ public class PlayerPanic : MonoBehaviour
         value = Mathf.Clamp(value, 0, maxValue);
         var speed = Time.deltaTime * drainSpeed;
         value += dim.darkness.enabled ? speed : -speed;
+
+        if (value >= maxValue)
+            Player.instance.GameOver();
+    }
+
+    public void EnemyHit(float damage)
+    {
+        value += damage;
     }
 
     public float GetPercent()
     {
         return 1 - value / maxValue;
+    }
+
+    public void Reset()
+    {
+        value = 0;
     }
 }

@@ -8,7 +8,7 @@ public class EnemyCollision : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemies") && !Player.instance.invincible)
         {
-            Player.instance.TakeHit(1);
+            Player.instance.TakeHit(3);
         }
     }
 }

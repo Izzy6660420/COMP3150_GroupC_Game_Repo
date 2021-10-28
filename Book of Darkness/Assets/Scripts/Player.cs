@@ -32,9 +32,6 @@ public class Player : MonoBehaviour
 	Vector3 startingPos;
 	string startingScene;
 
-	float health = 3f;
-	float initialHealth = 3f;
-
 	Animator anim;
 
 	private void Awake()
@@ -52,7 +49,6 @@ public class Player : MonoBehaviour
 
 		startingPos = transform.position;
 		startingScene = scene;
-		initialHealth = health;
 	}
 
 	private void Start() 
@@ -126,12 +122,8 @@ public class Player : MonoBehaviour
     {
 		if (invincible || IsHiding()) return;
 
-		health -= damage;
+		PlayerPanic.instance.EnemyHit(damage);
 		StartCoroutine(SetInvincible());
-		Debug.Log("HIT TAKEN");
-
-		if (health <= 0)
-			GameOver();
     }
 
 	public IEnumerator SetInvincible()
@@ -141,16 +133,16 @@ public class Player : MonoBehaviour
 		invincible = false;
     }
 
-	void GameOver()
+	public void GameOver()
     {
 		screen.color = Color.black;
-		transform.position = startingPos;
 		scene = startingScene;
-		PlayerTorch.instance.SetActive(false);
+		transform.position = startingPos;
 
 		GameOverEvent?.Invoke();
 		StartCoroutine(FadeScreen());
-		health = initialHealth;
+		PlayerTorch.instance.Reset();
+		PlayerPanic.instance.Reset();
     }
 
 	IEnumerator FadeScreen()

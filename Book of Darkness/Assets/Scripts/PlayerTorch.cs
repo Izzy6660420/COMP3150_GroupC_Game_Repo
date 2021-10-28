@@ -30,7 +30,7 @@ public class PlayerTorch : MonoBehaviour
         power = maxPower;
         player = Player.instance;
         defaultIntensity = torchLight.intensity;
-        SetActive(false);
+        SetActive(false, false);
     }
 
     void Update()
@@ -108,5 +108,11 @@ public class PlayerTorch : MonoBehaviour
             torchLight.intensity -= Time.deltaTime * 20;
             yield return null;
         }
+    }
+
+    public void Reset()
+    {
+        SetActive(false, false);
+        power = maxPower;
     }
 }
