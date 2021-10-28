@@ -28,7 +28,7 @@ public class BookUI : MonoBehaviour
         {
             sprite.enabled = true;
             hotkey.enabled = true;
-            meter.enabled = false;
+            meter.enabled = true;
         }
     }
 
