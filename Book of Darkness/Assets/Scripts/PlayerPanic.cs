@@ -27,7 +27,8 @@ public class PlayerPanic : MonoBehaviour
     void Update()
     {
         value = Mathf.Clamp(value, 0, maxValue);
-        if (dim.darkness.enabled) { value += Time.deltaTime * drainSpeed; }
+        var speed = Time.deltaTime * drainSpeed;
+        value += dim.darkness.enabled ? speed : -speed;
     }
 
     public float GetPercent()
