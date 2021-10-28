@@ -39,7 +39,7 @@ public class PlayerTorch : MonoBehaviour
         Vector2 dir = (mPos - (Vector2)arm.position).normalized;
         arm.right = player.facingRight ? dir : -dir;
 
-        if (Input.GetButtonDown(InputAxes.Torch) && power > 0)
+        if (Input.GetButtonDown(InputAxes.Torch) && power > 0 && player.currentState != player.HidingState)
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
@@ -72,7 +72,7 @@ public class PlayerTorch : MonoBehaviour
             enemiesInLight.Remove(col.gameObject.GetComponent<EnemyAI>());
     }
 
-    public void SetActive(bool b)
+    public void SetActive(bool b, bool click = true)
     {
         if (torchLight.enabled == b) return;
 
@@ -80,7 +80,7 @@ public class PlayerTorch : MonoBehaviour
         torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
-        AudioManager.instance.PlaySound(buttonClickSfx, transform.position);
+        if (click) AudioManager.instance.PlaySound(buttonClickSfx, transform.position);
     }
 
     public float AddPower(float n)

@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
 	public bool canHide = false;
 	public PlayerState currentState;
-	public PlayerState ExposedState,HidingState;
+	public PlayerState ExposedState, HidingState;
 	public string scene;
 
 	public SpriteRenderer screen;
