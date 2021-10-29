@@ -28,7 +28,7 @@ public class PlayerPanic : MonoBehaviour
     {
         value = Mathf.Clamp(value, 0, maxValue);
         var speed = Time.deltaTime * drainSpeed;
-        value += dim.darkness.enabled ? speed : -speed;
+        value += dim.darkness.enabled ? speed : -speed/2;
 
         if (value >= maxValue)
             Player.instance.GameOver();
