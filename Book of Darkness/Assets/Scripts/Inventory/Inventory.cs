@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class Inventory : MonoBehaviour
     public int space = 5;
     public int batteries = 0;
 
+    public event Action BookObtainedEvent;
+
     public bool Add(Item item)
     {
         if (items.Count >= space)
@@ -32,9 +35,11 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
+        if (item.name == "Book")
+            BookObtainedEvent?.Invoke();
+
         items.Add(item);
-        if (onItemChangedCallback != null)
-            onItemChangedCallback.Invoke();
+        onItemChangedCallback?.Invoke();
 
         return true;
     }
@@ -42,8 +47,7 @@ public class Inventory : MonoBehaviour
     public void Remove(Item item)
     {
         items.Remove(item);
-        if (onItemChangedCallback != null)
-            onItemChangedCallback.Invoke();
+        onItemChangedCallback?.Invoke();
     }
 
     public bool HasItem(string itemName)
