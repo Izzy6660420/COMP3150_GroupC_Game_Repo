@@ -15,20 +15,36 @@ public class BookUI : MonoBehaviour
     {
         dimension = DimensionController.instance;
         dimension.DimensionSwitchEvent += Transition;
+        Inventory.instance.BookObtainedEvent += DisplayUI;
         animator = GetComponent<Animator>();
         sprite = GetComponent<Image>();
-    }
 
-    void Update()
-    {
         sprite.enabled = false;
         hotkey.enabled = false;
         meter.enabled = false;
-        if (Inventory.instance.HasItem("Book"))
+    }
+
+    void DisplayUI()
+    {
+        sprite.enabled = true;
+        hotkey.enabled = true;
+        meter.enabled = true;
+
+        StartCoroutine(FadeIn(sprite));
+        StartCoroutine(FadeIn(hotkey));
+        StartCoroutine(FadeIn(meter));
+    }
+
+    IEnumerator FadeIn(Image img)
+    {
+        var percent = 0f;
+        img.color = Color.clear;
+
+        while (percent < 1)
         {
-            sprite.enabled = true;
-            hotkey.enabled = true;
-            meter.enabled = true;
+            percent += Time.deltaTime;
+            img.color = Color.Lerp(Color.clear, Color.white, percent);
+            yield return null;
         }
     }
 
