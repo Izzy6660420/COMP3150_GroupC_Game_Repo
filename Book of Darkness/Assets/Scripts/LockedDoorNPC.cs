@@ -51,6 +51,7 @@ public class LockedDoorNPC : NPC
         unlocked = true;
         Inventory.instance.Remove(key);
         GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+        AudioManager.instance.PlaySound("Unlock Door", transform.position);
         Talk(dialogues[0]);
     }
 

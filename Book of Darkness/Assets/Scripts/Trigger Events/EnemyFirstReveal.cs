@@ -14,12 +14,14 @@ public class EnemyFirstReveal : CustomizedMajorEvent
         teddyBear.SetActive(false);
         rippedUpTeddy.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        AudioManager.instance.PlaySound("Enemy Reveal", Vector3.zero, 0.8f);
 
-        monster.GetComponent<EnemyAI>().enabled = true;
+        yield return new WaitForSeconds(0.8f);
+
         DimensionController.instance.CameraSwitch();
+        monster.GetComponent<EnemyAI>().enabled = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         DimensionController.instance.CameraSwitch();
         
