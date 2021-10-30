@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LockedDoorNPC : NPC
 {
     float timer = 0;
     float useTime = 2f;
+    Image bar;
+
+    void Update()
+    {
+        bar.fillAmount = timer/useTime;
+    }
 
     public override void Interact(Collider2D col)
     {
