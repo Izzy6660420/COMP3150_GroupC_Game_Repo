@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class LockedDoorNPC : NPC
 {
+    public Item key;
     float timer = 0;
     float useTime = 2f;
-    Image bar;
+    public Image bar;
 
     bool usingKey = false;
-    public Item key;
-
+    
     void Update()
     {
-        //bar.fillAmount = timer/useTime;
+        bar.enabled = false;
         if (usingKey)
         {
+            bar.enabled = true;
             timer += Time.deltaTime;
             if (timer >= useTime)
             {
@@ -26,6 +27,7 @@ public class LockedDoorNPC : NPC
                 Inventory.instance.Remove(key);
             }
         }
+        bar.fillAmount = timer / useTime;
     }
 
     public override void Interact(Collider2D col)
@@ -51,6 +53,7 @@ public class LockedDoorNPC : NPC
         {
             base.SetInteracted(false);
             usingKey = false;
+            timer = 0;
         }
     }
 }
