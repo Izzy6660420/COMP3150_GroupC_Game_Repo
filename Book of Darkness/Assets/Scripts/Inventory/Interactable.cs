@@ -5,20 +5,10 @@ public class Interactable : MonoBehaviour
     public GameObject tooltip;
     public float radius = 1f;
     bool hasInteracted = false;
-    Animator animator;
-    float tooltipTimer;
 
     public virtual void Interact(Collider2D col)
     {
         //For overriding
-    }
-
-    void Start()
-    {
-        if (tooltip == null)
-            return;
-        animator = tooltip.GetComponent<Animator>();
-        //tooltipTimer = animator.runtimeAnimatorController.animationClips[0].length; // NOT WORKING, NEED TO FIND METHOD TO RETRIEVE ANIMATION LENGTH
     }
 
     void OnTriggerEnter2D(Collider2D col)
