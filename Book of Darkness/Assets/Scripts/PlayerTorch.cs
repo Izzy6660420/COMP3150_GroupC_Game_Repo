@@ -78,7 +78,7 @@ public class PlayerTorch : MonoBehaviour
         torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
-        if (click) AudioManager.instance.PlaySound("Torch", transform.position);
+        if (click) AudioManager.instance.PlaySound("Torch", transform.position, 0.8f);
     }
 
     public float AddPower(float n)

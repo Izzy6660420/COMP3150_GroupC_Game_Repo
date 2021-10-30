@@ -18,6 +18,7 @@ public class Food : Interactable
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySound("Item Pickup", transform.position, .6f);
             if (GetComponent<Renderer>().enabled)
             {
                 Inventory.instance.Add(item);

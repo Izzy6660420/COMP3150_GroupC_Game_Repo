@@ -8,6 +8,7 @@ public class Battery : Interactable
     public override void Interact(Collider2D col)
     {
         var power = PlayerTorch.instance.AddPower(charge);
+        AudioManager.instance.PlaySound("Item Pickup", transform.position, .6f);
         Destroy(gameObject);
     }
 }

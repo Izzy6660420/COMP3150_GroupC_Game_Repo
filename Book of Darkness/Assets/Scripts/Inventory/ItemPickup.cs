@@ -18,6 +18,7 @@ public class ItemPickup : Interactable
         if (pickedUp)
         {
             if(customEvent != null) customEvent.triggerEvent();
+            AudioManager.instance.PlaySound("Item Pickup", transform.position);
             Destroy(gameObject);
         }
     }
