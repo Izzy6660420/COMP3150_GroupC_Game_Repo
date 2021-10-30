@@ -29,7 +29,7 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && !hasInteracted && Input.GetButton(InputAxes.Interact))
+        if (col.gameObject.CompareTag("Player") && Input.GetButtonDown(InputAxes.Interact))
         {
             Interact(col);
             hasInteracted = true;
