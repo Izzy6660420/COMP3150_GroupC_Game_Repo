@@ -19,8 +19,6 @@ public class PlayerTorch : MonoBehaviour
     public float power;
     public float maxPower = 20.0f;
     public float powerDrain = 1.0f;
-
-    public AudioClip buttonClickSfx;
     float defaultIntensity;
 
     List<EnemyAI> enemiesInLight = new List<EnemyAI>();
@@ -80,7 +78,7 @@ public class PlayerTorch : MonoBehaviour
         torchLightBG.enabled = b;
         polyCol.enabled = b;
         gameObj.SetActive(b);
-        if (click) AudioManager.instance.PlaySound(buttonClickSfx, transform.position);
+        if (click) AudioManager.instance.PlaySound("Torch", transform.position);
     }
 
     public float AddPower(float n)
