@@ -4,6 +4,7 @@ public class Interactable : MonoBehaviour
 {
     public GameObject tooltip;
     public float radius = 1f;
+    bool hasInteracted = false;
     Animator animator;
     float tooltipTimer;
 
@@ -28,9 +29,10 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && Input.GetButtonDown(InputAxes.Interact))
+        if (col.gameObject.CompareTag("Player") && !hasInteracted && Input.GetButton(InputAxes.Interact))
         {
             Interact(col);
+            hasInteracted = true;
         }
     }
 
@@ -45,6 +47,7 @@ public class Interactable : MonoBehaviour
     public void SetInteracted(bool b)
     {
         DisplayTooltip(false);
+        hasInteracted = b;
     }
 
     public void DisplayTooltip(bool b)
