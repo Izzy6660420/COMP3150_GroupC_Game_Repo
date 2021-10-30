@@ -34,6 +34,7 @@ public class LockedDoorNPC : NPC
     {
         if (Inventory.instance.HasItem("Parents Room Key"))
         {
+            AudioManager.instance.PlaySound("Key", transform.position);
             usingKey = true;
             return;
         }
@@ -44,7 +45,6 @@ public class LockedDoorNPC : NPC
     void Unlock()
     {
         Talk(dialogues[0]);
-        // Play SFX
     }
 
     void OnTriggerExit2D(Collider2D col)
