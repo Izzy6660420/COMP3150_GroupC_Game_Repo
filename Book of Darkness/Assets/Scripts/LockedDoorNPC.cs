@@ -11,7 +11,7 @@ public class LockedDoorNPC : NPC
 
     void Update()
     {
-        bar.fillAmount = timer/useTime;
+        //bar.fillAmount = timer/useTime;
     }
 
     public override void Interact(Collider2D col)
