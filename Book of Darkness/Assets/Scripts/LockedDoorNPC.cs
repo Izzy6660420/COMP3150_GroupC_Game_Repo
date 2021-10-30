@@ -12,9 +12,9 @@ public class LockedDoorNPC : NPC
         var hasKey = Inventory.instance.HasItem("Parents Room Key");
         var i = 1;
 
-        if (true)
+        if (hasKey) // Interact only called once, may need to create new class without extension from NPC/Interactable
         {
-            if (Input.GetKey("e"))
+            if (Input.GetKeyDown("e"))
             {
                 Debug.Log(timer);
                 timer += Time.deltaTime;
