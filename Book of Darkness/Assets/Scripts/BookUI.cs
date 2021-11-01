@@ -19,6 +19,7 @@ public class BookUI : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<Image>();
 
+        animator.enabled = false;
         sprite.enabled = false;
         hotkey.enabled = false;
         meter.enabled = false;
@@ -26,6 +27,9 @@ public class BookUI : MonoBehaviour
 
     void DisplayUI()
     {
+        animator.SetBool("BookObtained", true);
+
+        animator.enabled = true;
         sprite.enabled = true;
         hotkey.enabled = true;
         meter.enabled = true;
