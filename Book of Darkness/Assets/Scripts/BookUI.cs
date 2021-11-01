@@ -10,6 +10,7 @@ public class BookUI : MonoBehaviour
     Image sprite;
     public Image hotkey;
     public Image meter;
+    public Image hotkeyCover;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class BookUI : MonoBehaviour
         sprite.enabled = false;
         hotkey.enabled = false;
         meter.enabled = false;
+        hotkeyCover.enabled = false;
     }
 
     void DisplayUI()
@@ -32,24 +34,33 @@ public class BookUI : MonoBehaviour
         animator.enabled = true;
         sprite.enabled = true;
         hotkey.enabled = true;
+        hotkeyCover.enabled = true;
         meter.enabled = true;
+        hotkeyCover.color = Color.clear;
 
         StartCoroutine(FadeIn(sprite));
         StartCoroutine(FadeIn(hotkey));
         StartCoroutine(FadeIn(meter));
     }
 
-    IEnumerator FadeIn(Image img)
+    IEnumerator FadeIn(Image img, bool fadeOut = false)
     {
         var percent = 0f;
-        img.color = Color.clear;
+        img.color = fadeOut ? Color.white : Color.clear;
+        var initColor = img.color;
+        var endColor = fadeOut ? Color.clear : Color.white;
 
         while (percent < 1)
         {
             percent += Time.deltaTime;
-            img.color = Color.Lerp(Color.clear, Color.white, percent);
+            img.color = Color.Lerp(initColor, endColor, percent);
             yield return null;
         }
+    }
+
+    public void PulseHotkey()
+    {
+        StartCoroutine(FadeIn(hotkeyCover, true));
     }
 
     void Transition()
