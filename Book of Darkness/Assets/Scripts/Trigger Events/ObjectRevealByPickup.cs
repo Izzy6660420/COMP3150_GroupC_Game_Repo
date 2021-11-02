@@ -6,7 +6,7 @@ public class ObjectRevealByPickup : CustomizedMajorEvent
 {
 
     [SerializeField]
-    public GameObject revealItem;
+    public GameObject revealItem, nextEvent, teddyBear, rippedUpTeddy;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,9 @@ public class ObjectRevealByPickup : CustomizedMajorEvent
     public override void triggerEvent()
     {
         revealItem.SetActive(true);
+        teddyBear.SetActive(false);
+        rippedUpTeddy.SetActive(true);
+        nextEvent.SetActive(true);
         gameObject.SetActive(false);
     }
 }
