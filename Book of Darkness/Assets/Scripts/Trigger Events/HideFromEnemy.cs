@@ -13,8 +13,9 @@ public class HideFromEnemy : CustomizedMajorEvent
     }
 
     public override IEnumerator customEvent()
-    {    
-        if(DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
+    {
+        Debug.Log("ENEMY EVENT TRIGGERED");
+        if (DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
         yield return new WaitForSeconds(1);
 
         monster.SetActive(true);
@@ -26,7 +27,7 @@ public class HideFromEnemy : CustomizedMajorEvent
 
         if(DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
         monster.GetComponent<EnemyAI>().enabled = true;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public override void triggerEvent()
