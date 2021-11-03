@@ -6,15 +6,17 @@ public class HideFromEnemy : CustomizedMajorEvent
 {
     [SerializeField]
     public GameObject monster;
+    private Collider2D collide;
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        triggerEvent();
+        if(col.CompareTag("Player")) triggerEvent();
     }
 
     public override IEnumerator customEvent()
     {
-        Debug.Log("ENEMY EVENT TRIGGERED");
+        collide = gameObject.GetComponent<Collider2D>();
+        collide.enabled = false;
         if (DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
         yield return new WaitForSeconds(1);
 
