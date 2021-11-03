@@ -6,19 +6,20 @@ public class HideFromEnemy : CustomizedMajorEvent
 {
     [SerializeField]
     public GameObject monster;
-    private Collider2D collide;
+    bool triggered;
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Player")) triggerEvent();
+        if (triggered) return;
+        if (col.gameObject.TryGetComponent(out Player player)) triggerEvent();
     }
 
     public override IEnumerator customEvent()
     {
-        collide = gameObject.GetComponent<Collider2D>();
-        collide.enabled = false;
+        triggered = true;
+
         if (DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         monster.SetActive(true);
         AudioManager.instance.PlaySound("Enemy Reveal", Vector3.zero, 0.8f);
@@ -29,7 +30,6 @@ public class HideFromEnemy : CustomizedMajorEvent
 
         if(DimensionController.instance.dimensionStr != DimensionController.darknessStr) DimensionController.instance.CameraSwitch();
         monster.GetComponent<EnemyAI>().enabled = true;
-        Destroy(gameObject);
     }
 
     public override void triggerEvent()

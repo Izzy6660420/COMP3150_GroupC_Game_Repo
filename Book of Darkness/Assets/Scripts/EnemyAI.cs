@@ -26,11 +26,11 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = Player.instance.transform;
-        sprite.color = Color.clear;
     }
 
     void OnEnable()
     {
+        sprite.color = Color.clear;
         StartCoroutine(Fade(Color.white));
     }
 
