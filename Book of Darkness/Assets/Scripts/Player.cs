@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
 
 	public void HidePlayer(bool hideBool)
     {
+		AudioManager.instance.PlaySound("Wardrobe Door", transform.position, 0.6f);
 		sRenderer.enabled = hideBool;
 		for (int i = 0; i < subsprites.Length; i++) subsprites[i].enabled = !hideBool;
     }

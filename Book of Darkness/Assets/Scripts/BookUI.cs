@@ -30,6 +30,7 @@ public class BookUI : MonoBehaviour
     void DisplayUI()
     {
         animator.SetBool("BookObtained", true);
+        AudioManager.instance.PlaySound("Book Flip", transform.position);
 
         animator.enabled = true;
         sprite.enabled = true;

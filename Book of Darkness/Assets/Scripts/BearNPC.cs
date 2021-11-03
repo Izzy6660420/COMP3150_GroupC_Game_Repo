@@ -56,7 +56,7 @@ public class BearNPC : NPC
     IEnumerator Move()
     {
         float step = 10 * Time.deltaTime;
-        //AudioManager.instance.PlaySound("Bear Move", transform.position, 0.8f);
+        AudioManager.instance.PlaySound("Bear Move", transform.position, 0.8f);
 
         while (Vector3.Distance(transform.position, target.position) > 0.01f)
         {
