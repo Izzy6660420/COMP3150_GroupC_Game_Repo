@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class DialogueManager : MonoBehaviour
         lines = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, bool door = false)
     {
         animator.SetBool("IsOpen", true);
 
@@ -37,14 +38,15 @@ public class DialogueManager : MonoBehaviour
             lines.Enqueue(sentence);
         }
 
-        DisplayNext();
+        DisplayNext(door);
     }
 
-    public void DisplayNext()
+    public void DisplayNext(bool door = false)
     {
         if (lines.Count == 0)
         {
             EndDialogue();
+            if (door) SceneManager.LoadScene("END");
             return;
         }
         string temp = lines.Dequeue();

@@ -52,7 +52,7 @@ public class LockedDoorNPC : NPC
         Inventory.instance.Remove(key);
         GetComponent<SpriteRenderer>().sprite = unlockedDoor;
         AudioManager.instance.PlaySound("Unlock Door", transform.position);
-        Talk(dialogues[0]);
+        Talk(dialogues[0], true);
     }
 
     void OnTriggerExit2D(Collider2D col)

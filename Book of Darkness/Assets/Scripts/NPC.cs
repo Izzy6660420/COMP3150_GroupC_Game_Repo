@@ -12,9 +12,9 @@ public class NPC : Interactable
         
     }
 
-    public void Talk(Dialogue dialogue)
+    public void Talk(Dialogue dialogue, bool door = false)
     {
-        DialogueManager.instance.StartDialogue(dialogue);
+        DialogueManager.instance.StartDialogue(dialogue, door);
         talkedTo = true;
     }
 }
