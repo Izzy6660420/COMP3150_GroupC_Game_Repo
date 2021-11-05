@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,10 @@ public class LockedDoorNPC : NPC
     float useTime = 2f;
     public Image bar;
     public Sprite unlockedDoor;
+    public Image screen;
+
+    public Text line1;
+    public Text line2;
 
     bool usingKey = false;
     bool unlocked = false;
@@ -30,7 +35,6 @@ public class LockedDoorNPC : NPC
     {
         if (unlocked)
         {
-            Talk(dialogues[2]);
             return;
         }
 
@@ -52,7 +56,10 @@ public class LockedDoorNPC : NPC
         Inventory.instance.Remove(key);
         GetComponent<SpriteRenderer>().sprite = unlockedDoor;
         AudioManager.instance.PlaySound("Unlock Door", transform.position);
-        Talk(dialogues[0], true);
+        DialogueManager.instance.EndDialogue();
+
+        StartCoroutine(EndGame());
+        
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -62,6 +69,45 @@ public class LockedDoorNPC : NPC
             base.SetInteracted(false);
             usingKey = false;
             timer = 0;
+        }
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(FadeScreen());
+        StartCoroutine(Fade1());
+        StartCoroutine(Fade2());
+    }
+
+    IEnumerator FadeScreen()
+    {
+        var percent = 0f;
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+            screen.color = Color.Lerp(Color.clear, Color.black, percent);
+            yield return null;
+        }
+    }
+    IEnumerator Fade1()
+    {
+        var percent = 0f;
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+            line1.color = Color.Lerp(Color.clear, Color.white, percent);
+            yield return null;
+        }
+    }
+    IEnumerator Fade2()
+    {
+        var percent = 0f;
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+            line2.color = Color.Lerp(Color.clear, Color.white, percent);
+            yield return null;
         }
     }
 }
